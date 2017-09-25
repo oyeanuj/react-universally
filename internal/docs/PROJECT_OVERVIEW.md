@@ -9,7 +9,7 @@
 
 Below is a general overview of the project.
 
-## TOC
+## ToC
 
  - [Bundled by Webpack](#bundled-by-webpack)
  - [Transpiled by Babel](#transpiled-by-babel)
