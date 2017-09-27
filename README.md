@@ -16,7 +16,7 @@ Note: This is a feature branch of `react-universally`. Please see the [`FEATURE_
 
 This WIP branch is
 
-1. React-Universally (`master`)
+1. [React-Universally (`master`)](https://github.com/ctrlplusb/react-universally)
 
 2. **Plus**
  - Redux (re-organized + `Normalizr` + `Reselect`)
@@ -43,7 +43,6 @@ This starter kit contains all the build tooling and configuration you need to ki
   - ➿ `redux` for managing data
   - 🔀 `react-router` v4 as the router.
   - 🚄 `express` server.
-  - 🎭 `jest` as the test framework.
   - 💄 Combines `prettier` and Airbnb's ESlint configuration - performing code formatting on commit. Stop worrying about code style consistency.
   - 🖌 Styled Components
   - ✂️ Code splitting - easily define code split points in your source using `react-async-component` and `react-universal-component`
