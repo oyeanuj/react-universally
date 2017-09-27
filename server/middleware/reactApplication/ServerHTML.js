@@ -48,6 +48,7 @@ function ServerHTML(props) {
     reactAppString,
     routerState,
     storeState,
+    styleTags,
   } = props;
 
   // Creates an inline script definition that is protected by the nonce.
@@ -122,6 +123,7 @@ function ServerHTML(props) {
         </KeyedComponent>),
       )}
       appBodyString={reactAppString}
+      styleTags={styleTags}
     />
   );
 }
