@@ -6,6 +6,25 @@
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors)
 
+## TLDR;
+
+This branch is
+
+1. React-Universally (`master`)
+
+2. **Plus**
+ - Redux (re-organized + `Normalizr` + `Reselect`)
+ - Styled-Components
+ - React-Universal-Component
+ - SuperAgent
+ - Yarn
+ - ES2018 JS
+
+3. **Minus**
+ - Flow
+ - Jest (for React components)
+ - Axios
+
 ## About
 
 This starter kit contains all the build tooling and configuration you need to kick off your next universal React project, whilst containing a minimal "project" set up allowing you to make your own architecture decisions (Redux/MobX etc).
@@ -20,13 +39,13 @@ This starter kit contains all the build tooling and configuration you need to ki
   - 🚄 `express` server.
   - 🎭 `jest` as the test framework.
   - 💄 Combines `prettier` and Airbnb's ESlint configuration - performing code formatting on commit. Stop worrying about code style consistency.
-  - 🖌 Very basic CSS support - it's up to you to extend it with CSS Modules etc.
-  - ✂️ Code splitting - easily define code split points in your source using `react-async-component`.
+  - 🖌 Styled Components
+  - ✂️ Code splitting - easily define code split points in your source using `react-async-component` and `react-universal-component`
   - 🌍 Server Side Rendering.
   - 😎 Progressive Web Application ready, with offline support, via a Service Worker.
   - 🐘 Long term browser caching of assets with automated cache invalidation.
   - 📦 All source is bundled using Webpack v3.
-  - 🚀 Full ES2017+ support - use the exact same JS syntax across the entire project. No more folder context switching! We also only use syntax that is stage-3 or later in the TC39 process.
+  - 🚀 Full ES2018+ support - use the exact same JS syntax across the entire project. No more folder context switching! We also only use syntax that is stage-3 or later in the TC39 process.
   - 🔧 Centralised application configuration with helpers to avoid boilerplate in your code. Also has support for environment specific configuration files.
   - 🔥 Extreme live development - hot reloading of ALL changes to client/server source, with auto development server restarts when your application configuration changes.  All this with a high level of error tolerance and verbose logging to the console.
   - ⛑ SEO friendly - `react-helmet` provides control of the page title/meta/styles/scripts from within your components.
@@ -45,7 +64,7 @@ Redux/MobX, data persistence, modern styling frameworks and all the other bells 
 ## Getting started
 
 ```bash
-git clone https://github.com/ctrlplusb/react-universally my-project
+git clone https://github.com/oyeanuj/react-universally -b redux-styling-data-fetching --single-branch my-project
 cd my-project
 npm install
 npm run develop
