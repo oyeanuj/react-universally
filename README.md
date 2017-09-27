@@ -36,6 +36,7 @@ This starter kit contains all the build tooling and configuration you need to ki
   - 🏜 Asset bundling support. e.g. images/fonts.
   - 🎛 Preconfigured to support development and optimised production builds.
   - ❤️ Preconfigured to deploy to `now` with a single command.
+  - 👚 `Yarn` for package management.
 
 Redux/MobX, data persistence, modern styling frameworks and all the other bells and whistles have been explicitly excluded from this starter kit.  It's up to you to decide what technologies you would like to add to your own implementation based upon your own needs.
 
