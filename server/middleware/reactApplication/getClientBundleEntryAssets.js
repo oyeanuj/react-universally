@@ -12,7 +12,7 @@ let resultCache;
 /**
  * Retrieves the js/css for the named chunks that belong to our client bundle.
  *
- * Note: the order of the chunk names is important. The same ordering will be
+ * NOTE: the order of the chunk names is important. The same ordering will be
  * used when rendering the scripts.
  *
  * This is useful to us for a couple of reasons:

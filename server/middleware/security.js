@@ -6,7 +6,7 @@ import config from '../../config';
 const cspConfig = {
   directives: {
     childSrc: ["'self'"],
-    // Note: Setting this to stricter than * breaks the service worker. :(
+    // NOTE: Setting this to stricter than * breaks the service worker. :(
     // I can't figure out how to get around this, so if you know of a safer
     // implementation that is kinder to service workers please let me know.
     connectSrc: ['*'], // ["'self'", 'ws:'],
@@ -24,7 +24,7 @@ const cspConfig = {
     scriptSrc: [
       // Allow scripts hosted from our application.
       "'self'",
-      // Note: We will execution of any inline scripts that have the following
+      // NOTE: We will execution of any inline scripts that have the following
       // nonce identifier attached to them.
       // This is useful for guarding your application whilst allowing an inline
       // script to do data store rehydration (redux/mobx/apollo) for example.

@@ -39,7 +39,7 @@ if (process.env.BUILD_FLAG_IS_DEV === 'false' && config('serviceWorker.enabled')
 app.use(config('bundles.client.webPath'), clientBundle);
 
 // Configure static serving of our "public" root http path static files.
-// Note: these will be served off the root (i.e. '/') of our application.
+// NOTE: these will be served off the root (i.e. '/') of our application.
 app.use(express.static(pathResolve(appRootDir.get(), config('publicAssetsPath'))));
 
 // The React application middleware.
@@ -50,7 +50,8 @@ app.use(...errorHandlers);
 
 // Create an http listener for our express app.
 const listener = app.listen(config('port'), () =>
-  console.log(`Server listening on port ${config('port')}`));
+  console.log(`Server listening on port ${config('port')}`),
+);
 
 // We export the listener as it will be handy for our development hot reloader,
 // or for exposing a general extension layer for application customisations.

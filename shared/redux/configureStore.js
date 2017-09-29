@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import axios from 'axios';
+import superagent from 'superagent';
 import reducer from '../reducers';
 
 function configureStore(initialState) {
@@ -9,9 +9,9 @@ function configureStore(initialState) {
     applyMiddleware(
       // Initialising redux-thunk with extra arguments will pass the below
       // arguments to all the redux-thunk actions. Below we are passing a
-      // preconfigured axios instance which can be used to fetch data with.
+      // preconfigured superagent instance which can be used to fetch data with.
       // @see https://github.com/gaearon/redux-thunk
-      thunk.withExtraArgument({ axios }),
+      thunk.withExtraArgument({ superagent }),
     ),
     // Redux Dev Tools store enhancer.
     // @see https://github.com/zalmoxisus/redux-devtools-extension
@@ -21,9 +21,9 @@ function configureStore(initialState) {
     typeof window !== 'undefined' &&
     typeof window.devToolsExtension !== 'undefined'
       ? // Call the brower extension function to create the enhancer.
-        window.devToolsExtension()
+      window.devToolsExtension()
       : // Else we return a no-op function.
-        f => f,
+      f => f,
   );
 
   const store = initialState
@@ -43,7 +43,7 @@ function configureStore(initialState) {
   return store;
 }
 
-// NOTE: If we create an '/api' endpoint in our application then we will neeed to
+// NOTE: If we create an '/api' endpoint in our application then we will need to
 // configure the axios instances so that they will resolve to the proper URL
 // endpoints on the server. We have to provide absolute URLs for any of our
 // server bundles. To do so we can set the default 'baseURL' for axios. Any
