@@ -202,7 +202,7 @@ const values = {
           'redux',
           'react-redux',
           'redux-thunk',
-          'superagent',
+          'axios',
           'styled-components',
         ],
 

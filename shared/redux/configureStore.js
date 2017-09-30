@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import superagent from 'superagent';
+import axios from 'axios';
 import reducer from '../reducers';
 
 function configureStore(initialState) {
@@ -9,9 +9,9 @@ function configureStore(initialState) {
     applyMiddleware(
       // Initialising redux-thunk with extra arguments will pass the below
       // arguments to all the redux-thunk actions. Below we are passing a
-      // preconfigured superagent instance which can be used to fetch data with.
+      // preconfigured axios instance which can be used to fetch data with.
       // @see https://github.com/gaearon/redux-thunk
-      thunk.withExtraArgument({ superagent }),
+      thunk.withExtraArgument({ axios }),
     ),
     // Redux Dev Tools store enhancer.
     // @see https://github.com/zalmoxisus/redux-devtools-extension
