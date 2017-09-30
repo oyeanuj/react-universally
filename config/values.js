@@ -94,7 +94,7 @@ const values = {
       'cdn.polyfill.io',
     ],
     styleSrc: [
-      'cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css',
+      //   'cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css',
       'fonts.googleapis.com/css',
     ],
   },

@@ -1,4 +1,4 @@
-import 'normalize.css/normalize.css';
+// import 'normalize.css/normalize.css';
 
 import React from 'react';
 import Switch from 'react-router-dom/Switch';
@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
 
 import config from '../../../config';
 
-import './globals.css';
+// import './globals.css';
 
 import Error404 from './Error404';
 import Header from './Header';
@@ -21,7 +21,9 @@ function DemoApp() {
     <div style={{ padding: '2rem' }}>
       <Helmet>
         <html lang="en" />
-        <title>{config('htmlPage.defaultTitle')}</title>
+        <title>
+          {config('htmlPage.defaultTitle')}
+        </title>
         <meta name="application-name" content={config('htmlPage.defaultTitle')} />
         <meta name="description" content={config('htmlPage.description')} />
         <meta charSet="utf-8" />
@@ -102,17 +104,17 @@ function DemoApp() {
           this and the related items from the Content Security Policy in the
           global config if you have no intention of using milligram.
         */}
-        <link
+        {/* <link
           rel="stylesheet"
           href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
-        />
-        <link
+        /> */}
+        {/* <link
           rel="stylesheet"
           href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css"
-        />
+        /> */}
       </Helmet>
       <Header />
-      <div style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <div /* style={{ paddingTop: '2rem', paddingBottom: '2rem' }} */>
         <Switch>
           <Route exact path="/" component={AsyncHomeRoute} />
           <Route path="/counter" component={AsyncCounterRoute} />
