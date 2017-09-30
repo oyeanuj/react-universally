@@ -1,6 +1,6 @@
 ### Feature Branch
 
-Note: This is a feature branch of `react-universally`. 
+Note: This is a feature branch of `react-universally`.
 
 ---
 
