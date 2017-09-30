@@ -19,12 +19,12 @@ This WIP branch is
 1. [React-Universally (`master`)](https://github.com/ctrlplusb/react-universally)
 
 2. **Plus**
- - Redux (re-organized + `Normalizr` + `Reselect`)
+ - Redux (re-organized + `Normalizr` + `Reselect` + `ReduxLogger`)
  - Styled-Components
- - React-Universal-Component
  - SuperAgent
  - Yarn
  - ES2018 JS
+ - Less strict binding to package versions
 
 3. **Minus**
  - Flow
