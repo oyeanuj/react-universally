@@ -61,6 +61,10 @@ Now go make some changes to the `Home` component to see the tooling in action.
  - [Deploy your very own Server Side Rendering React App in 5 easy steps](/internal/docs/DEPLOY_TO_NOW.md)
  - [Changelog](/CHANGELOG.md)
 
+## Who's using it and where?
+
+You can see who is using it and how in [the comments here](https://github.com/ctrlplusb/react-universally/issues/437). Feel free to add to that telling us how you are using it, we'd love to hear from you.
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
