@@ -56,6 +56,15 @@ const listener = app.listen(config('port'), () =>
     level: 'special',
     message: `✓
 
+      ${config('welcomeMessage')}
+
+      ${config('htmlPage.defaultTitle')} is ready!
+
+      with
+
+      Service Workers: ${config('serviceWorker.enabled')}
+      Polyfills: ${config('polyfillIO.enabled')} (${config('polyfillIO.features').join(', ')})
+
       Server is now listening on Port ${config('port')}
       You can access it in the browser at http://${config('host')}/${config('port')}
       Press Ctrl-C to stop.
