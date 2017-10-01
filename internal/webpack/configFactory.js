@@ -12,6 +12,7 @@ import { mergeDeep } from '../../shared/utils/objects';
 import { removeNil } from '../../shared/utils/arrays';
 import withServiceWorker from './withServiceWorker';
 import config from '../../config';
+import { log } from '../utils';
 
 /**
  * Generates a webpack configuration for the target configuration.
@@ -44,11 +45,13 @@ export default function webpackConfigFactory(buildOptions) {
   const ifDevClient = ifElse(isDev && isClient);
   const ifProdClient = ifElse(isProd && isClient);
 
-  console.log(
-    `==> Creating ${isProd
+  log({
+    level: 'info',
+    title: 'Webpack',
+    message: `Creating ${isProd
       ? 'an optimised'
       : 'a development'} bundle configuration for the "${target}"`,
-  );
+  });
 
   const bundleConfig =
     isServer || isClient

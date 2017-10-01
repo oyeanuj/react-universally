@@ -11,6 +11,7 @@ import serviceWorker from './middleware/serviceWorker';
 import offlinePage from './middleware/offlinePage';
 import errorHandlers from './middleware/errorHandlers';
 import config from '../config';
+import { log } from '../internal/utils';
 
 // Create our express based server.
 const app = express();
@@ -50,7 +51,17 @@ app.use(...errorHandlers);
 
 // Create an http listener for our express app.
 const listener = app.listen(config('port'), () =>
-  console.log(`Server listening on port ${config('port')}`),
+  log({
+    title: 'server',
+    level: 'special',
+    message: `✓
+
+      Server is now listening on Port ${config('port')}
+      You can access it in the browser at http://${config('host')}/${config('port')}
+      Press Ctrl-C to stop.
+
+    `,
+  }),
 );
 
 // We export the listener as it will be handy for our development hot reloader,
