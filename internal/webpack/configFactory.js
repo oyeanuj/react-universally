@@ -12,6 +12,7 @@ import { mergeDeep } from '../../shared/utils/objects';
 import { removeNil } from '../../shared/utils/arrays';
 import withServiceWorker from './withServiceWorker';
 import config from '../../config';
+import { log } from '../utils';
 
 /**
  * Generates a webpack configuration for the target configuration.
@@ -44,18 +45,20 @@ export default function webpackConfigFactory(buildOptions) {
   const ifDevClient = ifElse(isDev && isClient);
   const ifProdClient = ifElse(isProd && isClient);
 
-  console.log(
-    `==> Creating ${isProd
+  log({
+    level: 'info',
+    title: 'Webpack',
+    message: `Creating ${isProd
       ? 'an optimised'
       : 'a development'} bundle configuration for the "${target}"`,
-  );
+  });
 
   const bundleConfig =
     isServer || isClient
       ? // This is either our "server" or "client" bundle.
-        config(['bundles', target])
+      config(['bundles', target])
       : // Otherwise it must be an additional node bundle.
-        config(['additionalNodeBundles', target]);
+      config(['additionalNodeBundles', target]);
 
   if (!bundleConfig) {
     throw new Error('No bundle configuration exists for target:', target);
@@ -124,9 +127,9 @@ export default function webpackConfigFactory(buildOptions) {
 
     target: isClient
       ? // Only our client bundle will target the web as a runtime.
-        'web'
+      'web'
       : // Any other bundle must be targetting node as a runtime.
-        'node',
+      'node',
 
     // Ensure that webpack polyfills the following node features for use
     // within any bundles that are targetting node as a runtime. This will be
@@ -517,12 +520,12 @@ export default function webpackConfigFactory(buildOptions) {
                 // paths used on the client.
                 publicPath: isDev
                   ? // When running in dev mode the client bundle runs on a
-                    // seperate port so we need to put an absolute path here.
-                    `http://${config('host')}:${config('clientDevServerPort')}${config(
-                      'bundles.client.webPath',
-                    )}`
+                  // seperate port so we need to put an absolute path here.
+              `http://${config('host')}:${config('clientDevServerPort')}${config(
+                'bundles.client.webPath',
+              )}`
                   : // Otherwise we just use the configured web path for the client.
-                    config('bundles.client.webPath'),
+                  config('bundles.client.webPath'),
                 // We only emit files when building a web bundle, for the server
                 // bundle we only care about the file loader being able to create
                 // the correct asset URLs.
