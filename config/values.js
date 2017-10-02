@@ -27,7 +27,7 @@ const values = {
   },
 
   // The host on which the server should run.
-  host: EnvVars.string('HOST', '0.0.0.0'),
+  host: EnvVars.string('HOST', 'localhost'),
   // The port on which the server should run.
   port: EnvVars.number('PORT', 1337),
 
@@ -205,6 +205,14 @@ const values = {
           'axios',
           'styled-components',
         ],
+
+        /**
+        * From React-Boilerplate:
+        * https://github.com/react-boilerplate/react-boilerplate/blob/dde20e76bc87965eba347373244251a5a36d290d/internals/config.js#L19-L31
+        * we need to exclude dependencies which are not intended for the browser
+        * by listing them here.
+        */
+        exclude: ['compression', 'cross-env', 'express'],
 
         // The name of the vendor DLL.
         name: '__dev_vendor_dll__',
