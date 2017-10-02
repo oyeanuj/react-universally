@@ -64,6 +64,7 @@ const values = {
       // The default list.
       'default',
       'es6',
+      'object.assign',
     ],
   },
 
