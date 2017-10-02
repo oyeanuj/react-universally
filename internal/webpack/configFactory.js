@@ -43,6 +43,7 @@ export default function webpackConfigFactory(buildOptions) {
   const ifClient = ifElse(isClient);
   const ifDevClient = ifElse(isDev && isClient);
   const ifProdClient = ifElse(isProd && isClient);
+  const isProdServer = ifElse(isProd && isServer);
 
   log({
     level: 'info',
@@ -408,7 +409,7 @@ export default function webpackConfigFactory(buildOptions) {
                   // skip it when reconciling.
                   ifProd('transform-react-constant-elements'),
                   ifProd('transform-react-remove-prop-types'),
-                  // ifProd('transform-inline-environment-variables'),
+                  isProdServer('transform-inline-environment-variables'),
                   ifProd(['transform-remove-console', { exclude: ['error', 'warn'] }]),
                   [
                     'babel-plugin-styled-components',
