@@ -43,8 +43,25 @@ app.use(config('bundles.client.webPath'), clientBundle);
 // NOTE: these will be served off the root (i.e. '/') of our application.
 app.use(express.static(pathResolve(appRootDir.get(), config('publicAssetsPath'))));
 
+/**
+ * Healthcheck route
+ *
+ * @return Void
+ */
+app.get('/health', (request, response) => {
+  response.status(200).send("Everybody says I'm okay!");
+});
+
 // The React application middleware.
-app.get('*', reactApplication);
+app.get('*', (request, response) => {
+  log({
+    title: 'Request',
+    level: 'special',
+    message: `Received for "${request.url}"`,
+  });
+
+  return reactApplication(request, response);
+});
 
 // Error Handler middlewares.
 app.use(...errorHandlers);
