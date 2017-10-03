@@ -17,13 +17,20 @@ function configureStore(initialState) {
     // @see https://github.com/zalmoxisus/redux-devtools-extension
     // We only want this enhancer enabled for development and when in a browser
     // with the extension installed.
+
+    /* eslint-disable no-underscore-dangle */
     process.env.NODE_ENV === 'development' &&
     typeof window !== 'undefined' &&
-    typeof window.devToolsExtension !== 'undefined'
+    typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined'
       ? // Call the brower extension function to create the enhancer.
-      window.devToolsExtension()
+      window.__REDUX_DEVTOOLS_EXTENSION__({
+        serialize: {
+          options: true,
+        },
+      })
       : // Else we return a no-op function.
       f => f,
+    /* eslint-enable */
   );
 
   const store = initialState
