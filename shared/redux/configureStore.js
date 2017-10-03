@@ -1,36 +1,61 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { createLogger } from 'redux-logger';
+import createCLILogger from 'redux-cli-logger';
+
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import reducer from '../reducers';
 
 function configureStore(initialState) {
-  const enhancers = compose(
-    // Middleware store enhancer.
-    applyMiddleware(
-      // Initialising redux-thunk with extra arguments will pass the below
-      // arguments to all the redux-thunk actions. Below we are passing a
-      // preconfigured axios instance which can be used to fetch data with.
-      // @see https://github.com/gaearon/redux-thunk
-      thunk.withExtraArgument({ axios }),
-    ),
-    // Redux Dev Tools store enhancer.
-    // @see https://github.com/zalmoxisus/redux-devtools-extension
-    // We only want this enhancer enabled for development and when in a browser
-    // with the extension installed.
+  // Initialising redux-thunk with extra arguments will pass the below
+  // arguments to all the redux-thunk actions. Below we are passing a
+  // preconfigured axios instance which can be used to fetch data with.
+  // @see https://github.com/gaearon/redux-thunk
 
-    /* eslint-disable no-underscore-dangle */
-    process.env.NODE_ENV === 'development' &&
+  const middlewares = [thunk.withExtraArgument({ axios })];
+
+  // Enable redux-logger in development mode, with specially composed options.
+  // This shows redux action logs in the console
+  if (process.env.BUILD_FLAG_IS_DEV) {
+    let logger;
+
+    /* eslint-disable no-undef */
+    if (__SERVER__) {
+      logger = createCLILogger({});
+    } else {
+      logger = createLogger({
+        logger: console,
+        duration: true,
+        diff: true,
+        collapsed: true,
+      });
+    }
+
+    middlewares.push(logger);
+  }
+
+  // Redux Dev Tools store enhancer.
+  // @see https://github.com/zalmoxisus/redux-devtools-extension
+  // We only want this enhancer enabled for development and when in a browser
+  // with the extension installed.
+
+  /* eslint-disable no-underscore-dangle */
+
+  const canDevTool =
+    process.env.BUILD_FLAG_IS_DEV &&
+    process.env.BUILD_FLAG_IS_CLIENT &&
     typeof window !== 'undefined' &&
-    typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined'
-      ? // Call the brower extension function to create the enhancer.
-      window.__REDUX_DEVTOOLS_EXTENSION__({
-        serialize: {
-          options: true,
-        },
-      })
-      : // Else we return a no-op function.
-      f => f,
-    /* eslint-enable */
+    typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+
+  const composeEnhancers = canDevTool
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ serialize: { options: true } })
+    : compose;
+
+  /* eslint-enable */
+
+  const enhancers = composeEnhancers(
+    // Middleware store enhancer.
+    applyMiddleware(...middlewares),
   );
 
   const store = initialState

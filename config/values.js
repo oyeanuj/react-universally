@@ -195,6 +195,7 @@ const values = {
         // webpack loaders in order to be processed (e.g. CSS/SASS etc).
         // For these cases you don't want to include them in the Vendor DLL.
         include: [
+          'axios',
           'react-async-component',
           'react',
           'react-dom',
@@ -203,7 +204,7 @@ const values = {
           'redux',
           'react-redux',
           'redux-thunk',
-          'axios',
+          'redux-logger',
           'styled-components',
         ],
 
@@ -213,7 +214,7 @@ const values = {
         * we need to exclude dependencies which are not intended for the browser
         * by listing them here.
         */
-        exclude: ['compression', 'cross-env', 'express'],
+        exclude: ['compression', 'cross-env', 'express', 'colors'],
 
         // The name of the vendor DLL.
         name: '__dev_vendor_dll__',
