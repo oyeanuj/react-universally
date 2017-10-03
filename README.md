@@ -1,7 +1,6 @@
 ### Feature Branch
 
-Note: This is a feature branch of `react-universally`. Please see the [`FEATURE_STYLED_COMPONENTS.md`](/docs/FEATURE_STYLED_COMPONENTS.md) for more information on this branch.
-
+Note: This is a feature branch of `react-universally`.
 ---
 
 <p align='center'>
@@ -19,17 +18,16 @@ This WIP branch is
 1. [React-Universally (`master`)](https://github.com/ctrlplusb/react-universally)
 
 2. **Plus**
- - Redux (re-organized + `Normalizr` + `Reselect` + `ReduxLogger`)
+ - Redux (re-organized + `ReduxLogger` + `ReduxCLILogger`)
  - Styled-Components
- - SuperAgent
  - Yarn
- - ES2018 JS
- - Less strict binding to package versions
+ - Decorators + Rest/Spread Operators + Stage 0 support
+ - Chalk
 
 3. **Minus**
  - Flow
  - Jest (for React components)
- - Axios
+ - Colors
 
 ## About
 
@@ -86,6 +84,10 @@ Now go make some changes to the `Home` component to see the tooling in action.
  - [Feature Branches](/internal/docs/FEATURE_BRANCHES.md)
  - [Deploy your very own Server Side Rendering React App in 5 easy steps](/internal/docs/DEPLOY_TO_NOW.md)
  - [Changelog](/CHANGELOG.md)
+
+## Who's using it and where?
+
+You can see who is using it and how in [the comments here](https://github.com/ctrlplusb/react-universally/issues/437). Feel free to add to that telling us how you are using it, we'd love to hear from you.
 
 ## Contributors
 

@@ -214,7 +214,7 @@ const values = {
         * we need to exclude dependencies which are not intended for the browser
         * by listing them here.
         */
-        exclude: ['compression', 'cross-env', 'express', 'colors'],
+        exclude: ['compression', 'cross-env', 'express', 'chalk'],
 
         // The name of the vendor DLL.
         name: '__dev_vendor_dll__',
