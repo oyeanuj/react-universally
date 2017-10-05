@@ -7,6 +7,22 @@ import asyncBootstrapper from 'react-async-bootstrapper';
 import { AsyncComponentProvider } from 'react-async-component';
 import { addLocaleData, IntlProvider } from 'react-intl';
 
+/*
+  NOTE: Currently, since this only has support for one default language,
+  we can import `en.json` as `messages` directly and pass it to `<IntlProvider />`
+
+  Once we are dealing with multiple languages, we should extract out all `intl`,
+  `messages`, and `locale` data into a separate file.
+
+  Apart from hiding away the details, the file will create the appropriate `messages` object to pass to `<IntlProvider />` by accounting for adding `defaultMessage` where translation doesn't exist for that message.
+
+  Sample to base it off of:
+  https://github.com/react-boilerplate/react-boilerplate/blob/dde20e76bc87965eba347373244251a5a36d290d/app/i18n.js#L1
+
+  (react-boilerplate/app/i18n.js)
+
+  */
+
 import en from 'react-intl/locale-data/en';
 import messages from '../shared/translations/en.json';
 

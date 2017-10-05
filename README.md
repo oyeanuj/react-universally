@@ -6,6 +6,35 @@
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors)
 
+## NOTE:
+This is a feature branch that is a Proof of Concept of integrating with React-Intl. Currently, this supports one default language with no switching or async loading of locale/translations loading.
+
+#### Adding support for more than default language:
+
+To do this properly, we would need to do the following:
+
+1. Get translations translated in the languages desired.
+2. Import locale-data and the translated `json` file on both client-side and server-side.
+3. Detect user-agent on the server-side from the request headers, and from the browser in the client-side.
+4. Abstract out the importing and use of `<IntlProvider />` into its own file. Today, we can import `en.json` as `messages` directly and pass it to `<IntlProvider />`.  Once we are dealing with multiple languages, we should extract out all `intl`, `messages`, and `locale` data into a separate file. Apart from hiding away the details, the file will create the appropriate `messages` object to pass to `<IntlProvider />` by accounting for adding `defaultMessage` where translation doesn't exist for that message. Inspiration:
+[react-boilerplate/app/i18n.js](https://github.com/react-boilerplate/react-boilerplate/blob/dde20e76bc87965eba347373244251a5a36d290d/app/i18n.js#L1)
+5. Integrate with Redux for language switching via a toggle. This would mean not only a toggle component, but also reducers, actions, selectors to tie it all up.
+6. Async loading of locales and translations for the chosen language.
+
+If you do end up completing any of the above tasks, I'd appreciate a PR 😄
+
+
+### Prior Art
+_note: Only the first one seems to have been kept updated._
+
+1.[React-Boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/i18n.md)
+
+2. Earlier attempts at integrating React-Intl with React-Universally are [here](https://github.com/ctrlplusb/react-universally/issues/254), [here](https://github.com/ctrlplusb/react-universally/pull/300), and [here](https://github.com/ctrlplusb/react-universally/pull/338)
+
+3. [React Starter Kit](https://github.com/kriasoft/react-starter-kit/blob/feature/react-intl/docs/recipes/how-to-integrate-react-intl.md)
+
+4.[Internationalization in React](https://medium.freecodecamp.org/internationalization-in-react-7264738274a0)
+
 ## About
 
 This starter kit contains all the build tooling and configuration you need to kick off your next universal React project, whilst containing a minimal "project" set up allowing you to make your own architecture decisions (Redux/MobX etc).
