@@ -9,12 +9,12 @@
 ## NOTE:
 This is a feature branch that is a Proof of Concept of integrating with React-Intl. Currently, this supports one default language with no switching or async loading of locale/translations loading.
 
-#### Instructions:
+##### Instructions:
 
 ```sh
 yarn; yarn clean; yarn intl:extract; yarn develop
 ```
-Go to: http://localhost:1337/about
+Go to: http://localhost:1337/about (the page with `react-intl` integrated)
 
 #### Adding support for more than default language:
 
@@ -31,17 +31,16 @@ To do this properly, we would need to do the following:
 
 If you do end up completing any of the above tasks, I'd appreciate a PR 😄
 
+#### Prior Art
+_note: only the first one seems to be up to date._
 
-### Prior Art
-_note: Only the first one seems to have been kept updated._
-
-1.[React-Boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/i18n.md)
+1. [React-Boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/i18n.md)
 
 2. Earlier attempts at integrating React-Intl with React-Universally are [here](https://github.com/ctrlplusb/react-universally/issues/254), [here](https://github.com/ctrlplusb/react-universally/pull/300), and [here](https://github.com/ctrlplusb/react-universally/pull/338)
 
 3. [React Starter Kit](https://github.com/kriasoft/react-starter-kit/blob/feature/react-intl/docs/recipes/how-to-integrate-react-intl.md)
 
-4.[Internationalization in React](https://medium.freecodecamp.org/internationalization-in-react-7264738274a0)
+4. [Internationalization in React](https://medium.freecodecamp.org/internationalization-in-react-7264738274a0)
 
 ## About
 
