@@ -7,7 +7,9 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors)
 
 ## NOTE:
-This is a feature branch that is a [Proof of Concept](/internal/docs/REACT_INTL.md) of integrating with React-Intl. Currently, this supports one default language with no switching or async loading of locale/translations loading. [READ MORE HERE](/internal/docs/REACT_INTL.md)
+This is a feature branch that is a [Proof of Concept](/internal/docs/REACT_INTL.md) of integrating with React-Intl. Currently, this supports one default language with no switching or async loading of locale/translations loading.
+
+[Read More Here](/internal/docs/REACT_INTL.md)
 
 ## About
 
