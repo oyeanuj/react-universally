@@ -84,7 +84,7 @@ const listener = app.listen(config('port'), () =>
       Locales: ${config('locales')}
 
       Server is now listening on Port ${config('port')}
-      You can access it in the browser at http://${config('host')}/${config('port')}
+      You can access it in the browser at http://${config('host')}:${config('port')}
       Press Ctrl-C to stop.
 
     `,

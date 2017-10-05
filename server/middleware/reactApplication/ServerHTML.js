@@ -52,13 +52,14 @@ function ServerHTML(props) {
   } = props;
 
   // Creates an inline script definition that is protected by the nonce.
-  const inlineScript = body =>
-    <script nonce={nonce} type="text/javascript" dangerouslySetInnerHTML={{ __html: body }} />;
+  const inlineScript = body => (
+    <script nonce={nonce} type="text/javascript" dangerouslySetInnerHTML={{ __html: body }} />
+  );
 
   const headerElements = removeNil([
+    ...ifElse(helmet)(() => helmet.meta.toComponent(), []),
     ...ifElse(helmet)(() => helmet.title.toComponent(), []),
     ...ifElse(helmet)(() => helmet.base.toComponent(), []),
-    ...ifElse(helmet)(() => helmet.meta.toComponent(), []),
     ...ifElse(helmet)(() => helmet.link.toComponent(), []),
     ifElse(clientEntryAssets && clientEntryAssets.css)(() => stylesheetTag(clientEntryAssets.css)),
     ...ifElse(helmet)(() => helmet.style.toComponent(), []),
@@ -112,16 +113,10 @@ function ServerHTML(props) {
   return (
     <HTML
       htmlAttributes={ifElse(helmet)(() => helmet.htmlAttributes.toComponent(), null)}
-      headerElements={headerElements.map((x, idx) =>
-        (<KeyedComponent key={idx}>
-          {x}
-        </KeyedComponent>),
-      )}
-      bodyElements={bodyElements.map((x, idx) =>
-        (<KeyedComponent key={idx}>
-          {x}
-        </KeyedComponent>),
-      )}
+      headerElements={headerElements.map((x, idx) => (
+        <KeyedComponent key={idx}>{x}</KeyedComponent>
+      ))}
+      bodyElements={bodyElements.map((x, idx) => <KeyedComponent key={idx}>{x}</KeyedComponent>)}
       appBodyString={reactAppString}
       styleElement={styleElement}
     />
