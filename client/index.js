@@ -39,11 +39,11 @@ function renderApp(TheApp) {
   const app = (
     <ReactHotLoader>
       <AsyncComponentProvider rehydrateState={asyncComponentsRehydrateState}>
-        <BrowserRouter forceRefresh={!supportsHistory}>
-          <IntlProvider locale="en" messages={messages}>
+        <IntlProvider locale="en" messages={messages}>
+          <BrowserRouter forceRefresh={!supportsHistory}>
             <TheApp />
-          </IntlProvider>
-        </BrowserRouter>
+          </BrowserRouter>
+        </IntlProvider>
       </AsyncComponentProvider>
     </ReactHotLoader>
   );
