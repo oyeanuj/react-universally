@@ -16,6 +16,16 @@ exports[`<AboutRoute /> renders 1`] = `
       About
     </title>
   </HelmetWrapper>
+  <h1>
+    <FormattedMessage
+      id="About.title"
+      values={
+        Object {
+          "library": "React Universally",
+        }
+      }
+    />
+  </h1>
   <p>
     Produced with ❤️
   </p>
@@ -27,8 +37,7 @@ exports[`<AboutRoute /> renders 1`] = `
     >
       GitHub
     </a>
-     
-    page.
+     page.
   </p>
 </div>
 `;
