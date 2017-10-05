@@ -9,6 +9,13 @@
 ## NOTE:
 This is a feature branch that is a Proof of Concept of integrating with React-Intl. Currently, this supports one default language with no switching or async loading of locale/translations loading.
 
+#### Instructions:
+
+```sh
+yarn; yarn clean; yarn intl:extract; yarn develop
+```
+Go to: http://localhost:1337/about
+
 #### Adding support for more than default language:
 
 To do this properly, we would need to do the following:
@@ -20,6 +27,7 @@ To do this properly, we would need to do the following:
 [react-boilerplate/app/i18n.js](https://github.com/react-boilerplate/react-boilerplate/blob/dde20e76bc87965eba347373244251a5a36d290d/app/i18n.js#L1)
 5. Integrate with Redux for language switching via a toggle. This would mean not only a toggle component, but also reducers, actions, selectors to tie it all up.
 6. Async loading of locales and translations for the chosen language.
+7. Enable extraction of locale-data into the build.
 
 If you do end up completing any of the above tasks, I'd appreciate a PR 😄
 
