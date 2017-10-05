@@ -28,6 +28,7 @@ To do this properly, we would need to do the following:
 5. Integrate with Redux for language switching via a toggle. This would mean not only a toggle component, but also reducers, actions, selectors to tie it all up.
 6. Async loading of locales and translations for the chosen language.
 7. Enable extraction of locale-data into the build.
+8. Add relevant locale polyfills for node and browser.
 
 If you do end up completing any of the above tasks, I'd appreciate a PR 😄
 
