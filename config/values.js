@@ -69,6 +69,7 @@ const values = {
       'default',
       'es6',
       'object.assign',
+      'intl',
     ],
   },
 

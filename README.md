@@ -20,6 +20,7 @@ This WIP branch is
 2. **Plus**
  - Redux (re-organized + `ReduxLogger` + `ReduxCLILogger`)
  - Styled-Components
+ - [React-Intl Proof of Concept](/internal/docs/REACT_INTL.md)
  - Yarn
  - Decorators + Rest/Spread Operators + Stage 0 support
  - Chalk
