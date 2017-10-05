@@ -4,6 +4,10 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { AsyncComponentProvider, createAsyncContext } from 'react-async-component';
 import asyncBootstrapper from 'react-async-bootstrapper';
+import { addLocaleData, IntlProvider } from 'react-intl';
+
+import en from 'react-intl/locale-data/en';
+import messages from '../../../shared/translations/en.json';
 
 import config from '../../../config';
 
@@ -47,11 +51,16 @@ export default function reactApplicationMiddleware(request, response) {
   // query for the results of the render.
   const reactRouterContext = {};
 
+  const locale = 'en';
+  addLocaleData([...en]);
+
   // Declare our React application.
   const app = (
     <AsyncComponentProvider asyncContext={asyncComponentsContext}>
       <StaticRouter location={request.url} context={reactRouterContext}>
-        <DemoApp />
+        <IntlProvider locale={locale} messages={messages} initialNow={Date.now()}>
+          <DemoApp />
+        </IntlProvider>
       </StaticRouter>
     </AsyncComponentProvider>
   );

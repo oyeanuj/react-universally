@@ -407,6 +407,8 @@ export default function webpackConfigFactory(buildOptions) {
                   // React that the subtree hasn’t changed so React can completely
                   // skip it when reconciling.
                   ifProd('transform-react-constant-elements'),
+                  'syntax-dynamic-import',
+                  'dynamic-import-webpack',
                 ].filter(x => x != null),
               },
               buildOptions,

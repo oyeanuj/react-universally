@@ -5,6 +5,10 @@ import { render } from 'react-dom';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import asyncBootstrapper from 'react-async-bootstrapper';
 import { AsyncComponentProvider } from 'react-async-component';
+import { addLocaleData, IntlProvider } from 'react-intl';
+
+import en from 'react-intl/locale-data/en';
+import messages from '../shared/translations/en.json';
 
 import './polyfills';
 
@@ -29,11 +33,16 @@ const asyncComponentsRehydrateState = window.__ASYNC_COMPONENTS_REHYDRATE_STATE_
 function renderApp(TheApp) {
   // Firstly, define our full application component, wrapping the given
   // component app with a browser based version of react router.
+
+  addLocaleData([...en]);
+
   const app = (
     <ReactHotLoader>
       <AsyncComponentProvider rehydrateState={asyncComponentsRehydrateState}>
         <BrowserRouter forceRefresh={!supportsHistory}>
-          <TheApp />
+          <IntlProvider locale="en" messages={messages}>
+            <TheApp />
+          </IntlProvider>
         </BrowserRouter>
       </AsyncComponentProvider>
     </ReactHotLoader>
@@ -61,4 +70,7 @@ if (process.env.BUILD_FLAG_IS_DEV === 'true' && module.hot) {
   module.hot.accept('../shared/components/DemoApp', () => {
     renderApp(require('../shared/components/DemoApp').default);
   });
+
+  // Accept changes to translations for hot reloading.
+  module.hot.accept('./i18n');
 }
