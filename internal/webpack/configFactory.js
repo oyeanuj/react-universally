@@ -446,6 +446,7 @@ export default function webpackConfigFactory(buildOptions) {
                       useBuiltIns: true,
                     },
                   ],
+                  'dynamic-import-webpack',
                   'syntax-dynamic-import',
                 ]),
               },

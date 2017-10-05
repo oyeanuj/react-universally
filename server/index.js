@@ -81,6 +81,7 @@ const listener = app.listen(config('port'), () =>
 
       Service Workers: ${config('serviceWorker.enabled')}
       Polyfills: ${config('polyfillIO.enabled')} (${config('polyfillIO.features').join(', ')})
+      Locales: ${config('locales')}
 
       Server is now listening on Port ${config('port')}
       You can access it in the browser at http://${config('host')}/${config('port')}

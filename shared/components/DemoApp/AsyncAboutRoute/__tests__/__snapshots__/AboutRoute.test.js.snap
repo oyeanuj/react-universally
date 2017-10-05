@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AboutRoute /> renders 1`] = `
+<div
+  style={
+    Object {
+      "textAlign": "center",
+    }
+  }
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      About
+    </title>
+  </HelmetWrapper>
+  <h1>
+    <FormattedMessage
+      id="About.title"
+      values={
+        Object {
+          "library": "React Universally",
+        }
+      }
+    />
+  </h1>
+  <p>
+    Produced with ❤️
+  </p>
+  <p>
+    View our contributors list on our
+     
+    <a
+      href="https://github.com/ctrlplusb/react-universally"
+    >
+      GitHub
+    </a>
+     page.
+  </p>
+</div>
+`;

@@ -8,6 +8,10 @@ import { AsyncComponentProvider } from 'react-async-component';
 import { JobProvider } from 'react-jobs';
 import { Provider } from 'react-redux';
 import configureStore from '../shared/redux/configureStore';
+import { addLocaleData, IntlProvider } from 'react-intl';
+
+import en from 'react-intl/locale-data/en';
+import messages from '../shared/translations/en.json';
 
 import './polyfills';
 
@@ -42,13 +46,18 @@ const rehydrateState = window.__JOBS_STATE__;
 function renderApp(TheApp) {
   // Firstly, define our full application component, wrapping the given
   // component app with a browser based version of react router.
+
+  addLocaleData([...en]);
+
   const app = (
     <ReactHotLoader>
       <AsyncComponentProvider rehydrateState={asyncComponentsRehydrateState}>
         <JobProvider rehydrateState={rehydrateState}>
           <Provider store={store}>
             <BrowserRouter forceRefresh={!supportsHistory}>
-              <TheApp />
+              <IntlProvider locale="en" messages={messages}>
+                <TheApp />
+              </IntlProvider>
             </BrowserRouter>
           </Provider>
         </JobProvider>
@@ -83,4 +92,7 @@ if (process.env.BUILD_FLAG_IS_DEV === 'true' && module.hot) {
   module.hot.accept('../shared/components/DemoApp', () => {
     renderApp(require('../shared/components/DemoApp').default);
   });
+
+  // Accept changes to translations for hot reloading.
+  module.hot.accept('./i18n');
 }

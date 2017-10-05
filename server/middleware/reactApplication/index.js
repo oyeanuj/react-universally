@@ -8,6 +8,10 @@ import asyncBootstrapper from 'react-async-bootstrapper';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import configureStore from '../../../shared/redux/configureStore';
+import { addLocaleData, IntlProvider } from 'react-intl';
+
+import en from 'react-intl/locale-data/en';
+import messages from '../../../shared/translations/en.json';
 
 import config from '../../../config';
 import DemoApp from '../../../shared/components/DemoApp';
@@ -56,6 +60,8 @@ export default function reactApplicationMiddleware(request, response) {
 
   // Create the redux store.
   const store = configureStore();
+  const locale = 'en';
+  addLocaleData([...en]);
 
   // Declare our React application.
   const app = (
@@ -63,7 +69,9 @@ export default function reactApplicationMiddleware(request, response) {
       <JobProvider jobContext={jobContext}>
         <StaticRouter location={request.url} context={reactRouterContext}>
           <Provider store={store}>
-            <DemoApp />
+            <IntlProvider locale={locale} messages={messages} initialNow={Date.now()}>
+              <DemoApp />
+            </IntlProvider>
           </Provider>
         </StaticRouter>
       </JobProvider>
