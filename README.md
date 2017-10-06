@@ -1,3 +1,8 @@
+### Feature Branch
+
+Note: This is a feature branch of `react-universally`.
+---
+
 <p align='center'>
   <h1 align='center'>React, Universally</h1>
   <p align='center'><img width='150' src='https://raw.githubusercontent.com/ctrlplusb/assets/master/logos/react-universally.png' /></p>
@@ -5,6 +10,26 @@
 </p>
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors)
+
+## TLDR;
+
+This WIP branch is
+
+1. [React-Universally (`master`)](https://github.com/ctrlplusb/react-universally)
+
+2. **Plus**
+ - React 16
+ - Redux (re-organized + `ReduxLogger` + `ReduxCLILogger`)
+ - Styled-Components
+ - [React-Intl Proof of Concept](/internal/docs/REACT_INTL.md)
+ - Yarn
+ - Decorators + Rest/Spread Operators + Stage 0 support
+ - Chalk
+
+3. **Minus**
+ - Flow
+ - Jest (for React components)
+ - Colors
 
 ## About
 
@@ -17,7 +42,6 @@ This starter kit contains all the build tooling and configuration you need to ki
   - 👀 `react` as the view.
   - 🔀 `react-router` v4 as the router.
   - 🚄 `express` server.
-  - 🎭 `jest` as the test framework.
   - 💄 Combines `prettier` and Airbnb's ESlint configuration - performing code formatting on commit. Stop worrying about code style consistency.
   - 🖌 Very basic CSS support - it's up to you to extend it with CSS Modules etc.
   - ✂️ Code splitting - easily define code split points in your source using `react-async-component`.
@@ -43,10 +67,10 @@ Redux/MobX, data persistence, modern styling frameworks and all the other bells 
 ## Getting started
 
 ```bash
-git clone https://github.com/ctrlplusb/react-universally my-project
+git clone https://github.com/oyeanuj/react-universally -b dev --single-branch my-project
 cd my-project
-npm install
-npm run develop
+yarn install
+yarn develop
 ```
 
 Now go make some changes to the `Home` component to see the tooling in action.
