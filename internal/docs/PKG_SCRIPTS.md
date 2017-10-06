@@ -42,11 +42,3 @@ Executes `eslint` against the project. Alternatively you could look to install t
 ## `npm run start`
 
 Executes the server.  It expects you to have already built the bundles using the `npm run build` command.
-
-## `npm run test`
-
-Runs the `jest` tests.
-
-## `npm run test:coverage`
-
-Runs the `jest` tests and generates a coverage report. I recommend you look at [codecov.io](https://codecov.io) to host your coverage reports.
