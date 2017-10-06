@@ -6,7 +6,7 @@ import path from 'path';
 import webpack from 'webpack';
 import WebpackMd5Hash from 'webpack-md5-hash';
 
-import { happyPackPlugin } from '../utils';
+import { happyPackPlugin, log } from '../utils';
 import { ifElse } from '../../shared/utils/logic';
 import { mergeDeep } from '../../shared/utils/objects';
 import { removeNil } from '../../shared/utils/arrays';
@@ -44,11 +44,13 @@ export default function webpackConfigFactory(buildOptions) {
   const ifDevClient = ifElse(isDev && isClient);
   const ifProdClient = ifElse(isProd && isClient);
 
-  console.log(
-    `==> Creating ${isProd
+  log({
+    level: 'info',
+    title: 'Webpack',
+    message: `Creating ${isProd
       ? 'an optimised'
       : 'a development'} bundle configuration for the "${target}"`,
-  );
+  });
 
   const bundleConfig =
     isServer || isClient

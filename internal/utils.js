@@ -1,7 +1,7 @@
 import os from 'os';
 import HappyPack from 'happypack';
 import notifier from 'node-notifier';
-import colors from 'colors/safe';
+import chalk from 'chalk';
 import { execSync } from 'child_process';
 import appRootDir from 'app-root-dir';
 
@@ -31,18 +31,21 @@ export function log(options) {
   }
 
   const level = options.level || 'info';
-  const msg = `==> ${title} -> ${options.message}`;
+  const msg = `${title}: ${options.message}`;
 
   switch (level) {
     case 'warn':
-      console.log(colors.yellow(msg));
+      console.log(chalk.yellowBright(msg));
       break;
     case 'error':
-      console.log(colors.bgRed.white(msg));
+      console.log(chalk.bgRed.white.bold(msg));
+      break;
+    case 'special':
+      console.log(chalk.italic.cyanBright(msg));
       break;
     case 'info':
     default:
-      console.log(colors.green(msg));
+      console.log(chalk.gray(msg));
   }
 }
 
