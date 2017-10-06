@@ -202,6 +202,8 @@ const values = {
           'redux',
           'react-redux',
           'redux-thunk',
+          'redux-logger',
+          'redux-cli-logger',
           'axios',
         ],
 

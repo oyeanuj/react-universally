@@ -274,6 +274,13 @@ export default function webpackConfigFactory(buildOptions) {
         BUILD_FLAG_IS_DEV: JSON.stringify(isDev),
       }),
 
+      new webpack.DefinePlugin({
+        __CLIENT__: JSON.stringify(isClient),
+        __SERVER__: JSON.stringify(isNode),
+        __DEV__: JSON.stringify(isDev),
+        __PROD__: JSON.stringify(isProd),
+      }),
+
       // Generates a JSON file containing a map of all the output files for
       // our webpack bundle.  A necessisty for our server rendering process
       // as we need to interogate these files in order to know what JS/CSS
