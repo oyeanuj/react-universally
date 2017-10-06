@@ -200,6 +200,12 @@ const values = {
           'react-dom',
           'react-helmet',
           'react-router-dom',
+          'redux',
+          'react-redux',
+          'redux-thunk',
+          'redux-logger',
+          'redux-cli-logger',
+          'axios',
         ],
 
         /**

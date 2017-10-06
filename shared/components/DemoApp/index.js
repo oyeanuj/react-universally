@@ -14,6 +14,7 @@ import Header from './Header';
 
 import AsyncHomeRoute from './AsyncHomeRoute';
 import AsyncCounterRoute from './AsyncCounterRoute';
+import AsyncPostsRoute from './AsyncPostsRoute';
 import AsyncAboutRoute from './AsyncAboutRoute';
 
 function DemoApp() {
@@ -29,9 +30,7 @@ function DemoApp() {
         <meta name="msapplication-TileColor" content="#2b2b2b" />
         <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png" />
         <meta name="theme-color" content="#2b2b2b" />
-        <title>
-          {config('htmlPage.defaultTitle')}
-        </title>
+        <title>{config('htmlPage.defaultTitle')}</title>
         {/*
           A great reference for favicons:
           https://github.com/audreyr/favicon-cheat-sheet
@@ -118,6 +117,7 @@ function DemoApp() {
         <Switch>
           <Route exact path="/" component={AsyncHomeRoute} />
           <Route path="/counter" component={AsyncCounterRoute} />
+          <Route path="/posts" component={AsyncPostsRoute} />
           <Route path="/about" component={AsyncAboutRoute} />
           <Route component={Error404} />
         </Switch>
