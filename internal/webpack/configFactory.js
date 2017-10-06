@@ -85,6 +85,7 @@ export default function webpackConfigFactory(buildOptions) {
               'clientDevServerPort',
             )}/__webpack_hmr`,
         ),
+
         // The source entry file for the bundle.
         path.resolve(appRootDir.get(), bundleConfig.srcEntryFile),
       ]),
