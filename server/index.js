@@ -43,6 +43,11 @@ app.use(config('bundles.client.webPath'), clientBundle);
 // Note: these will be served off the root (i.e. '/') of our application.
 app.use(express.static(pathResolve(appRootDir.get(), config('publicAssetsPath'))));
 
+/* Healthcheck route */
+app.get('/health', (request, response) => {
+  response.status(200).send("Everybody says I'm okay!");
+});
+
 // The React application middleware.
 app.get('*', (request, response) => {
   log({
