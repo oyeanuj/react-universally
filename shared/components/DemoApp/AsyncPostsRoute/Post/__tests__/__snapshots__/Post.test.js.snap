@@ -3,6 +3,7 @@
 exports[`<Post /> renders the snapshot 1`] = `
 <div>
   <HelmetWrapper
+    defer={true}
     encodeSpecialCharacters={true}
     title="Posts - Test"
   />
