@@ -43,6 +43,7 @@ export default function webpackConfigFactory(buildOptions) {
   const ifClient = ifElse(isClient);
   const ifDevClient = ifElse(isDev && isClient);
   const ifProdClient = ifElse(isProd && isClient);
+  const ifProdServer = ifElse(isProd && isServer);
 
   log({
     level: 'info',
@@ -369,13 +370,11 @@ export default function webpackConfigFactory(buildOptions) {
                 // transpilation has not been disabled within in.
                 babelrc: false,
 
-                presets: [
+                presets: removeNil([
                   // JSX
                   'react',
-                  // Stage 3 javascript syntax.
-                  // "Candidate: complete spec and initial browser implementations."
-                  // Add anything lower than stage 3 at your own risk. :)
-                  'stage-3',
+                  // Stage 0 javascript syntax.
+                  'stage-0',
                   // For our client bundles we transpile all the latest ratified
                   // ES201X code into ES5, safe for browsers.  We exclude module
                   // transilation as webpack takes care of this for us, doing
@@ -385,9 +384,11 @@ export default function webpackConfigFactory(buildOptions) {
                   // babel-preset-env so that only the unsupported features of
                   // our target node version gets transpiled.
                   ifNode(['env', { targets: { node: true } }]),
-                ].filter(x => x != null),
+                ]),
 
-                plugins: [
+                plugins: removeNil([
+                  // console.scope for better debugging
+                  ifDev('console'),
                   // Required to support react hot loader.
                   ifDevClient('react-hot-loader/babel'),
                   // This decorates our components with  __self prop to JSX elements,
@@ -407,7 +408,34 @@ export default function webpackConfigFactory(buildOptions) {
                   // React that the subtree hasn’t changed so React can completely
                   // skip it when reconciling.
                   ifProd('transform-react-constant-elements'),
-                ].filter(x => x != null),
+                  ifProd('transform-react-remove-prop-types'),
+                  ifProdServer('transform-inline-environment-variables'),
+                  ifProd(['transform-remove-console', { exclude: ['error', 'warn'] }]),
+                  // For spread operator.
+                  [
+                    'transform-object-rest-spread',
+                    {
+                      useBuiltIns: true,
+                    },
+                  ],
+                  // For decorators.
+                  'transform-decorators-legacy',
+                  [
+                    'transform-class-properties',
+                    {
+                      useBuiltIns: true,
+                    },
+                  ],
+                  // Converts JSX to function calls.
+                  [
+                    'transform-react-jsx',
+                    {
+                      useBuiltIns: true,
+                    },
+                  ],
+                  'syntax-dynamic-import',
+                  'dynamic-import-webpack',
+                ]),
               },
               buildOptions,
             ),
