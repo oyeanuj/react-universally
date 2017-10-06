@@ -14,7 +14,7 @@ const values = {
   // with our client bundle.
   clientConfigFilter: {
     // This is here as an example showing that you can expose variables
-    // that were potentially provivded by the environment
+    // that were potentially provided by the environment
     welcomeMessage: true,
     // We only need to expose the enabled flag of the service worker.
     serviceWorker: {
@@ -24,7 +24,11 @@ const values = {
     polyfillIO: true,
     // We need to expose all the htmlPage settings.
     htmlPage: true,
+    locales: true,
   },
+
+  // Locales supported
+  locales: ['en'],
 
   // The host on which the server should run.
   host: EnvVars.string('HOST', '0.0.0.0'),
@@ -65,6 +69,7 @@ const values = {
       'default',
       'es6',
       'object.assign',
+      'intl',
     ],
   },
 
@@ -106,6 +111,12 @@ const values = {
 
   // Where does our build output live?
   buildOutputPath: './build',
+
+  // Path to locale data
+  localeDataPath: '../../shared/locale-data',
+
+  // Path to the translations
+  translationsPath: '../../shared/translations',
 
   // Do you want to included source maps for optimised builds of the client
   // bundle?

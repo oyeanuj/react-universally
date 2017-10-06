@@ -8,6 +8,10 @@ import asyncBootstrapper from 'react-async-bootstrapper';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import configureStore from '../../../shared/redux/configureStore';
+import { addLocaleData, IntlProvider } from 'react-intl';
+
+import en from 'react-intl/locale-data/en';
+import messages from '../../../shared/translations/en.json';
 
 import config from '../../../config';
 import DemoApp from '../../../shared/components/DemoApp';
@@ -56,6 +60,24 @@ export default function reactApplicationMiddleware(request, response) {
 
   // Create the redux store.
   const store = configureStore();
+  /*
+  NOTE: Currently, since this only has support for one default language,
+  we can import `en.json` as `messages` directly and pass it to `<IntlProvider />`
+
+  Once we are dealing with multiple languages, we should extract out all `intl`,
+  `messages`, and `locale` data into a separate file.
+
+  Apart from hiding away the details, the file will create the appropriate `messages` object to pass to `<IntlProvider />` by accounting for adding `defaultMessage` where translation doesn't exist for that message.
+
+  Sample to base it off of:
+  https://github.com/react-boilerplate/react-boilerplate/blob/dde20e76bc87965eba347373244251a5a36d290d/app/i18n.js#L1
+
+  (react-boilerplate/app/i18n.js)
+
+  */
+
+  const locale = 'en';
+  addLocaleData([...en]);
 
   // Declare our React application.
   const app = (
@@ -63,7 +85,9 @@ export default function reactApplicationMiddleware(request, response) {
       <JobProvider jobContext={jobContext}>
         <StaticRouter location={request.url} context={reactRouterContext}>
           <Provider store={store}>
-            <DemoApp />
+            <IntlProvider locale={locale} messages={messages} initialNow={Date.now()}>
+              <DemoApp />
+            </IntlProvider>
           </Provider>
         </StaticRouter>
       </JobProvider>
