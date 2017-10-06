@@ -7,38 +7,38 @@
 
 # Package Scripts
 
-## `npm run analyze:client`
+## `yarn analyze:client`
 
 Creates an `webpack-bundle-analyze` session against the production build of the client bundle.
 
-## `npm run analyze:server`
+## `yarn analyze:server`
 
 Creates an `webpack-bundle-analyze` session against the production build of the server bundle.
 
-## `npm run build`
+## `yarn build`
 
 Builds the client and server bundles, with the output being optimized.
 
-## `npm run build:dev`
+## `yarn build:dev`
 
 Builds the client and server bundles, with the output including development related code.
 
-## `npm run clean`
+## `yarn clean`
 
 Deletes any build output that would have originated from the other commands.
 
-## `npm run deploy`
+## `yarn deploy`
 
 Deploys your application to [`now`](https://zeit.co/now). If you haven't heard of these guys, please check them out. They allow you to hit the ground running! I've included them within this repo as it requires almost zero configuration to allow your project to be deployed to their servers.
 
-## `npm run develop`
+## `yarn develop`
 
 Starts a development server for both the client and server bundles.  We use `react-hot-loader` v3 to power the hot reloading of the client bundle, whilst a filesystem watch is implemented to reload the server bundle when any changes have occurred.
 
-## `npm run lint`
+## `yarn lint`
 
 Executes `eslint` against the project. Alternatively you could look to install the `eslint-loader` and integrate it into the `webpack` bundle process.
 
-## `npm run start`
+## `yarn start`
 
-Executes the server.  It expects you to have already built the bundles using the `npm run build` command.
+Executes the server.  It expects you to have already built the bundles using the `yarn build` command.
