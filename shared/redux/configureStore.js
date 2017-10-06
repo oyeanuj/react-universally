@@ -11,18 +11,20 @@ function configureStore(initialState) {
 
   const middlewares = [thunk.withExtraArgument({ axios })];
 
+  /* eslint-disable no-undef */
+  /* eslint-disable global-require */
+  /* eslint-disable no-console */
+  /* eslint-disable no-unused-vars */
+
   // Enable redux-logger in development mode, with specially composed options.
   // This shows redux action logs in the console
   if (__DEV__) {
     let logger;
 
-    /* eslint-disable no-undef */
     if (__SERVER__) {
-      /* eslint-disable-next-line global-require */
       const createCLILogger = require('redux-cli-logger').default;
       logger = createCLILogger({});
     } else {
-      /* eslint-disable-next-line global-require */
       const { createLogger } = require('redux-logger');
 
       logger = createLogger({
@@ -33,7 +35,15 @@ function configureStore(initialState) {
       });
     }
 
-    middlewares.push(logger);
+    // This middleware will inform you if your action didn't lead
+    // to a new state object being created. Runs only in development mode.
+    const reduxUnhandledAction = require('redux-unhandled-action').default;
+    const handleUnhandled = (action) => {
+      console.log(action.type);
+      console.warn(`${action.type} didn't lead to creation of a new state object`);
+    };
+
+    middlewares.push(reduxUnhandledAction(handleUnhandled), logger);
   }
 
   // Redux Dev Tools store enhancer.
