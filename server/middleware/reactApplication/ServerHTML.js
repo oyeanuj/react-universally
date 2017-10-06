@@ -45,6 +45,7 @@ function ServerHTML(props) {
     helmet,
     jobsState,
     nonce,
+    styleElement,
     reactAppString,
     routerState,
     storeState,
@@ -117,6 +118,7 @@ function ServerHTML(props) {
       ))}
       bodyElements={bodyElements.map((x, idx) => <KeyedComponent key={idx}>{x}</KeyedComponent>)}
       appBodyString={reactAppString}
+      styleElement={styleElement}
     />
   );
 }
@@ -134,6 +136,7 @@ ServerHTML.propTypes = {
   routerState: PropTypes.object,
   // eslint-disable-next-line react/forbid-prop-types
   storeState: PropTypes.object,
+  styleElement: PropTypes.array,
 };
 
 // EXPORT

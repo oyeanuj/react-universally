@@ -206,6 +206,7 @@ const values = {
           'redux-logger',
           'redux-cli-logger',
           'axios',
+          'styled-components',
         ],
 
         /**

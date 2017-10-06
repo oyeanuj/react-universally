@@ -440,6 +440,12 @@ export default function webpackConfigFactory(buildOptions) {
                       useBuiltIns: true,
                     },
                   ],
+                  [
+                    'babel-plugin-styled-components',
+                    {
+                      ssr: true,
+                    },
+                  ],
                   'syntax-dynamic-import',
                   'dynamic-import-webpack',
                 ]),
