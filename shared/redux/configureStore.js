@@ -13,7 +13,7 @@ function configureStore(initialState) {
 
   // Enable redux-logger in development mode, with specially composed options.
   // This shows redux action logs in the console
-  if (process.env.BUILD_FLAG_IS_DEV) {
+  if (__DEV__) {
     let logger;
 
     /* eslint-disable no-undef */
