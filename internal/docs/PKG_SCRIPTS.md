@@ -50,3 +50,7 @@ Runs the `jest` tests.
 ## `npm run test:coverage`
 
 Runs the `jest` tests and generates a coverage report. I recommend you look at [codecov.io](https://codecov.io) to host your coverage reports.
+
+## `npm run size`
+
+Runs the [`size-limit`](https://github.com/ai/size-limit) script to give you an idea of the size of your client bundle, when minified and gzipped, with all dependencies.
