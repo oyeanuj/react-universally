@@ -36,9 +36,8 @@ class HotNodeServer {
         log({
           title: name,
           level: 'error',
-          message: 'Error in server execution, check the console for more info.',
+          message: `ERROR in server execution: \n${data.toString().trim()}`,
         });
-        console.error(data.toString().trim());
       });
       this.server = newServer;
     };
