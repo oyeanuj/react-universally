@@ -21,7 +21,8 @@
     "size": "size-limit",
     "start": "cross-env NODE_ENV=production node build/server",
     "catalog-start": "catalog start",
-    "catalog-build": "catalog build"
+    "catalog-build": "catalog build",
+    "magic": "cross-env NODE_ENV=production node build/catalog"
   },
   "lint-staged": {
     "*.js": [
