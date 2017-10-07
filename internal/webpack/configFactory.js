@@ -31,7 +31,7 @@ export default function webpackConfigFactory(buildOptions) {
 
   const isProd = optimize;
   const isDev = !isProd;
-  const isClient = target === 'client';
+  const isClient = target === 'client' || target === 'catalog';
   const isServer = target === 'server';
   const isNode = !isClient;
 

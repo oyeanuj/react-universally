@@ -22,7 +22,7 @@
     "start": "cross-env NODE_ENV=production node build/server",
     "catalog-start": "catalog start",
     "catalog-build": "catalog build",
-    "magic": "cross-env NODE_ENV=production node build/catalog"
+    "magic": "babel-node internal/scripts/build cross-env NODE_ENV=production node build/catalog catalog start"
   },
   "lint-staged": {
     "*.js": [
