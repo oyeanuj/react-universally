@@ -19,7 +19,9 @@
     "precommit": "lint-staged",
     "preinstall": "node internal/scripts/preinstall",
     "size": "size-limit",
-    "start": "cross-env NODE_ENV=production node build/server"
+    "start": "cross-env NODE_ENV=production node build/server",
+    "catalog-start": "catalog start",
+    "catalog-build": "catalog build"
   },
   "lint-staged": {
     "*.js": [
@@ -56,6 +58,7 @@
   "dependencies": {
     "app-root-dir": "1.0.2",
     "axios": "0.16.1",
+    "catalog": "^3.0.0-rc.4",
     "compression": "1.7.1",
     "cross-env": "5.0.5",
     "dotenv": "4.0.0",
@@ -73,9 +76,9 @@
     "react-async-component": "1.0.1",
     "react-dom": "16.0.0",
     "react-helmet": "5.2.0",
+    "react-intl": "2.4.0",
     "react-jobs": "1.0.0-beta.3",
     "react-redux": "5.0.6",
-    "react-intl": "2.4.0",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
     "redux-cli-logger": "oyeanuj/redux-cli-logger",

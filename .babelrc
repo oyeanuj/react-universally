@@ -16,6 +16,7 @@
         }
       ],
       "stage-0",
-	  "react"
+	  "react",
+	  "catalog/babel"
   ]
 }

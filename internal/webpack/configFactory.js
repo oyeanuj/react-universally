@@ -383,6 +383,7 @@ export default function webpackConfigFactory(buildOptions) {
                   'react',
                   // Stage 0 javascript syntax.
                   'stage-0',
+                  'catalog/babel',
                   // For our client bundles we transpile all the latest ratified
                   // ES201X code into ES5, safe for browsers.  We exclude module
                   // transilation as webpack takes care of this for us, doing
