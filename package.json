@@ -16,7 +16,7 @@
     "deploy-to-now": "babel-node internal/scripts/deploy",
     "develop": "cross-env DEPLOYMENT=development babel-node internal/development",
     "heroku-prebuild": "rm -rf node_modules; yarn clean",
-    "heroku-postbuild": "yarn intl:extract; yarn build; yarn start",
+    "heroku-postbuild": "yarn intl:extract; yarn run build;",
     "intl:extract": "babel-node internal/scripts/extractMessages",
     "lint": "eslint client server shared config internal",
     "precommit": "lint-staged",
