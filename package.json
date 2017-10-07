@@ -87,6 +87,7 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.2.12",
+    "@storybook/addon-centered": "3.2.12",
     "@storybook/addon-console": "1.0.0",
     "@storybook/addon-info": "3.2.12",
     "@storybook/addon-knobs": "3.2.12",
