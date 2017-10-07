@@ -268,6 +268,17 @@ const values = {
       outputPath: './build/api',
     }
     */
+
+    catalog: {
+      // Src entry file.
+      srcEntryFile: './catalog/index.html',
+
+      // Src paths.
+      srcPaths: ['./shared', './client', './catalog'],
+
+      // Where does the catalog bundle output live?
+      outputPath: './build/catalog',
+    },
   },
 
   // These plugin definitions provide you with advanced hooks into customising
