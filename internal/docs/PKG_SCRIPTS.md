@@ -42,3 +42,11 @@ Executes `eslint` against the project. Alternatively you could look to install t
 ## `yarn start`
 
 Executes the server.  It expects you to have already built the bundles using the `yarn build` command.
+
+## `yarn intl:extract`
+
+Extracts the messages defined in each component for `React-Intl`, to a central list of messages for translations, and to supply to `<IntlProvider />`. Make sure to run this command before building.
+
+## `yarn size`
+
+Runs the [`size-limit`](https://github.com/ai/size-limit) script to give you an idea of the size of your client bundle, when minified and gzipped, with all dependencies.
