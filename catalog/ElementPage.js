@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Page, ReactSpecimen, ColorSpecimen } from 'catalog';
-import { Logo, Menu } from '../shared/components/DemoApp/Header';
+import Logo from '../shared/components/DemoApp/Header/Logo';
 
 export default () => (
   <Page>
@@ -16,7 +16,6 @@ export default () => (
 
     <ReactSpecimen span={3}>
       <Logo />
-      <Header />
     </ReactSpecimen>
 
     <ColorSpecimen name="Red" value="#FF5500" span={2} />
