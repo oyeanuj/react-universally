@@ -21,7 +21,9 @@
     "precommit": "lint-staged",
     "preinstall": "node internal/scripts/preinstall",
     "size": "size-limit",
-    "start": "cross-env NODE_ENV=production node build/server"
+    "start": "cross-env NODE_ENV=production node build/server",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "lint-staged": {
     "*.js": [
@@ -93,6 +95,15 @@
     "uuid": "3.1.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "3.2.12",
+    "@storybook/addon-centered": "3.2.12",
+    "@storybook/addon-console": "1.0.0",
+    "@storybook/addon-info": "3.2.12",
+    "@storybook/addon-knobs": "3.2.12",
+    "@storybook/addon-links": "3.2.12",
+    "@storybook/addon-notes": "3.2.12",
+    "@storybook/addon-options": "3.2.12",
+    "@storybook/react": "^3.2.12",
     "assets-webpack-plugin": "3.5.1",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
@@ -100,6 +111,7 @@
     "babel-loader": "7.1.2",
     "babel-plugin-console": "0.2.0",
     "babel-plugin-dynamic-import-webpack": "1.0.1",
+    "babel-plugin-react-docgen": "1.8.1",
     "babel-plugin-react-intl": "2.3.1",
     "babel-plugin-styled-components": "1.2.1",
     "babel-plugin-syntax-dynamic-import": "6.18.0",
@@ -140,11 +152,13 @@
     "prettier-eslint": "8.2.0",
     "prettier-eslint-cli": "4.4.0",
     "react-hot-loader": "3.0.0-beta.7",
+    "react-storybook-addon-props-combinations": "1.0.0",
     "regenerator-runtime": "0.11.0",
     "rimraf": "2.6.2",
     "semver": "5.4.1",
     "size-limit": "0.11.6",
     "source-map-support": "0.4.18",
+    "storybook-addon-jsx": "4.2.0",
     "style-loader": "0.18.2",
     "webpack": "3.6.0",
     "webpack-bundle-analyzer": "2.9.0",
