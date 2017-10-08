@@ -7,14 +7,14 @@ import { JobProvider, createJobContext } from 'react-jobs';
 import asyncBootstrapper from 'react-async-bootstrapper';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
-import configureStore from '../../../shared/redux/configureStore';
+import configureStore from '../../../src/redux/configureStore';
 import { addLocaleData, IntlProvider } from 'react-intl';
 
 import en from 'react-intl/locale-data/en';
-import messages from '../../../shared/translations/en.json';
+import messages from '../../../src/translations/en.json';
 
 import config from '../../../config';
-import DemoApp from '../../../shared/components/DemoApp';
+import DemoApp from '../../../src/components/DemoApp';
 import ServerHTML from './ServerHTML';
 import { log } from '../../../internal/utils';
 

@@ -16,13 +16,11 @@
     "develop": "cross-env DEPLOYMENT=development babel-node internal/development",
     "intl:extract": "babel-node internal/scripts/extractMessages",
     "lint": "eslint client server shared config internal",
-    "precommit": "lint-staged",
     "preinstall": "node internal/scripts/preinstall",
     "size": "size-limit",
     "start": "cross-env NODE_ENV=production node build/server",
     "catalog-start": "catalog start",
-    "catalog-build": "catalog build",
-    "magic": "babel-node internal/scripts/build cross-env NODE_ENV=production node build/catalog catalog start"
+    "catalog-build": "catalog build"
   },
   "lint-staged": {
     "*.js": [
@@ -128,7 +126,6 @@
     "glob": "7.1.2",
     "happypack": "4.0.0",
     "html-webpack-plugin": "2.30.1",
-    "husky": "0.14.3",
     "lint-staged": "4.2.3",
     "md5": "2.2.1",
     "modernizr-loader": "1.0.1",

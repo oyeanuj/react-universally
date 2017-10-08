@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Catalog, pageLoader } from 'catalog';
 
 const pages = [
-  // {
-  //   path: '/',
-  //   title: 'Welcome',
-  //   content: pageLoader(() => import('./WELCOME.md')),
-  // },
+  {
+    path: '/',
+    title: 'Welcome',
+    content: pageLoader(() => import('./WELCOME.md')),
+  },
   {
     path: '/elements',
     title: 'Elements',

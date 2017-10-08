@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Page, ReactSpecimen, ColorSpecimen } from 'catalog';
-import Logo from '../shared/components/DemoApp/Header/Logo';
+import Logo from '../src/components/DemoApp/Header/Logo';
 
 export default () => (
   <Page>

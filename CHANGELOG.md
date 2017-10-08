@@ -33,7 +33,7 @@ I'll map them as follows:
 
 ### Changed
 
- - All server/client/shared code all use the shared config helper.
+ - All server/client/src code all use the shared config helper.
  - Updated dependencies, including to the latest Webpack official 2 release.
 
 ### Added
@@ -205,7 +205,7 @@ The major areas that have changed are the following:
  - /tools/webpack/configFactory
  - /src/client/index.js
  - /src/universalMiddleware/*
- - /src/shared/universal/components/App/App.js
+ - /src/src/universal/components/App/App.js
 
 Closes #159
 
@@ -328,7 +328,7 @@ Moved flow-typed definitions back to the root directory as the flow-typed guys h
 
 Moves the RHL3 AppContainer resolution into a ReactHotLoader component.
 
-Moved the custom react flow types into the /src/shared/universal/types/react.js file.
+Moved the custom react flow types into the /src/src/universal/types/react.js file.
 
 ### Added
 
@@ -415,8 +415,8 @@ System.import expression within routes to not use a template string as Webpack t
 
 Big restructure and improvement to the dynamic routing / code splitting configuration.
 We no longer need the previous manual import hacks for the routes to allow Hot Module Reloading to work. Yay!
-The ~/src/shared/components/App/ now has subfolders, one for "lib" components (i.e. components to be reused across views/routes), and a "views" folder which will contain components used for our routes.
-All our primary routes which we will use for code splitting have been moved to ~/src/shared/components/App/views
+The ~/src/src/components/App/ now has subfolders, one for "lib" components (i.e. components to be reused across views/routes), and a "views" folder which will contain components used for our routes.
+All our primary routes which we will use for code splitting have been moved to ~/src/src/components/App/views
 
 Environment variables from the .env files are now automatically applied to the webpack DefinePlugin section, no longer requiring any error prone manual intervention.
 
