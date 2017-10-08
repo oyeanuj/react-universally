@@ -25,6 +25,7 @@ This WIP branch is
  - Yarn
  - Decorators + Rest/Spread Operators + Stage 0 support
  - Chalk
+ - Ready to deploy to Heroku
 
 3. **Minus**
  - Flow
