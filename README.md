@@ -13,7 +13,9 @@ Note: This is a feature branch of `react-universally`.
 
 ## TLDR;
 
-This WIP branch is
+For the cleaner version of this branch, please go to: [`redux-intl-styled`](https://github.com/oyeanuj/react-universally/tree/redux-styling-data-fetching). This one is no longer being maintained.
+
+This ~WIP~ outdated branch was..
 
 1. [React-Universally (`master`)](https://github.com/ctrlplusb/react-universally)
 
