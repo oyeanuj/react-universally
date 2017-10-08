@@ -33,6 +33,25 @@ This WIP branch is
  - Jest (for React components)
  - Colors
 
+
+### TODOs:
+
+#### Update Redux structure and flow.
+
+This would include -
+1. `bindActionCreators` with the components.
+2. Dispatch FSA actions
+3. Middleware deals with more than just thunks - mainly promises. As part of that, it ensures that appropriate `SUCCESS/FAILURE` actions are being dispatched.
+4. Use SuperAgent instead of Axios.
+5. Integrate all of this with React-Jobs.
+6. Re-organized structure to follow pods rather than how its organized today.
+
+Ideally, in a project, one would use `Normalizr` and `Reselect`. This example might be too simplistic to include those packages but I'd appreciate any PRs for that.
+
+#### Integrate `Catalog`
+
+Either in addition to, or instead of `Storybook`.
+
 ## About
 
 This starter kit contains all the build tooling and configuration you need to kick off your next universal React project, whilst containing a minimal "project" set up allowing you to make your own architecture decisions (Redux/MobX etc).
