@@ -11,12 +11,12 @@ import PropTypes from 'prop-types';
 import serialize from 'serialize-javascript';
 
 import config from '../../../config';
-import ifElse from '../../../shared/utils/logic/ifElse';
-import removeNil from '../../../shared/utils/arrays/removeNil';
+import ifElse from '../../../src/utils/logic/ifElse';
+import removeNil from '../../../src/utils/arrays/removeNil';
 import getClientBundleEntryAssets from './getClientBundleEntryAssets';
 
 import ClientConfig from '../../../config/components/ClientConfig';
-import HTML from '../../../shared/components/HTML';
+import HTML from '../../../src/components/HTML';
 
 // PRIVATES
 
@@ -78,10 +78,7 @@ function ServerHTML(props) {
     // to initialise so that the checksum matches the server response.
     // @see https://github.com/ctrlplusb/react-async-component
     ifElse(asyncComponentsState)(() =>
-      inlineScript(
-        `window.__ASYNC_COMPONENTS_REHYDRATE_STATE__=${serialize(asyncComponentsState)};`,
-      ),
-    ),
+      inlineScript(`window.__ASYNC_COMPONENTS_REHYDRATE_STATE__=${serialize(asyncComponentsState)};`)),
 
     ifElse(jobsState)(() => inlineScript(`window.__JOBS_STATE__=${serialize(jobsState)}`)),
 
@@ -91,21 +88,13 @@ function ServerHTML(props) {
     // This can't be configured within a react-helmet component as we
     // may need the polyfill's before our client JS gets parsed.
     ifElse(config('polyfillIO.enabled'))(() =>
-      scriptTag(`${config('polyfillIO.url')}?features=${config('polyfillIO.features').join(',')}`),
-    ),
+      scriptTag(`${config('polyfillIO.url')}?features=${config('polyfillIO.features').join(',')}`)),
     // When we are in development mode our development server will
     // generate a vendor DLL in order to dramatically reduce our
     // compilation times.  Therefore we need to inject the path to the
     // vendor dll bundle below.
-    ifElse(
-      process.env.BUILD_FLAG_IS_DEV === 'true' && config('bundles.client.devVendorDLL.enabled'),
-    )(() =>
-      scriptTag(
-        `${config('bundles.client.webPath')}${config(
-          'bundles.client.devVendorDLL.name',
-        )}.js?t=${Date.now()}`,
-      ),
-    ),
+    ifElse(process.env.BUILD_FLAG_IS_DEV === 'true' && config('bundles.client.devVendorDLL.enabled'))(() =>
+      scriptTag(`${config('bundles.client.webPath')}${config('bundles.client.devVendorDLL.name')}.js?t=${Date.now()}`)),
     ifElse(clientEntryAssets && clientEntryAssets.js)(() => scriptTag(clientEntryAssets.js)),
     ...ifElse(helmet)(() => helmet.script.toComponent(), []),
   ]);

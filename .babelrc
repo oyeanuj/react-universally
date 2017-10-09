@@ -8,15 +8,16 @@
 {
   "presets": [
 	  [
-        "env",
-        {
-          "targets": {
-            "node": true
-          },
-        }
-      ],
-      "stage-0",
+      "env",
+      {
+        "targets": {
+          "node": true
+        },
+      }
+    ],
+    "stage-0",
 	  "react",
+    "catalog/babel"
   ],
-  "plugins":  ["react-docgen"]
+  "plugins": [ "react-docgen"]
 }

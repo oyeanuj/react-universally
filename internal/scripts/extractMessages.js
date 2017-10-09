@@ -28,8 +28,8 @@ const addCheckmark = require('./helpers/checkmark');
 // require('shelljs/global');
 
 // Glob to match all js files except test files
-const FILES_TO_PARSE = 'shared/**/!(*.test).js';
-const TRANSLATION_PATH = 'shared/translations';
+const FILES_TO_PARSE = 'src/**/!(*.test).js';
+const TRANSLATION_PATH = 'src/translations';
 const DEFAULT_LOCALE = 'en';
 
 const locales = config('locales');
@@ -190,6 +190,6 @@ const extractFromFile = async fileName => {
 //     ],
 //   },
 //   locales,
-//   filesToParsePattern: `${__dirname}/../../shared/**/messages.js`,
+//   filesToParsePattern: `${__dirname}/../../src/**/messages.js`,
 //   translationsPath: resolvePath(__dirname, config('translationsPath')),
 // });

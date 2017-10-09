@@ -7,14 +7,14 @@ import { JobProvider, createJobContext } from 'react-jobs';
 import asyncBootstrapper from 'react-async-bootstrapper';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
-import configureStore from '../../../shared/redux/configureStore';
+import configureStore from '../../../src/redux/configureStore';
 import { addLocaleData, IntlProvider } from 'react-intl';
 
 import en from 'react-intl/locale-data/en';
-import messages from '../../../shared/translations/en.json';
+import messages from '../../../src/translations/en.json';
 
 import config from '../../../config';
-import DemoApp from '../../../shared/components/DemoApp';
+import DemoApp from '../../../src/components/DemoApp';
 import ServerHTML from './ServerHTML';
 import { log } from '../../../internal/utils';
 
@@ -100,18 +100,16 @@ export default function reactApplicationMiddleware(request, response) {
     const appString = renderToString(sheet.collectStyles(app));
     const styleElement = sheet.getStyleElement();
     // Generate the html response.
-    const html = renderToStaticMarkup(
-      <ServerHTML
-        reactAppString={appString}
-        styleElement={styleElement}
-        nonce={nonce}
-        helmet={Helmet.rewind()}
-        storeState={store.getState()}
-        routerState={reactRouterContext}
-        jobsState={jobContext.getState()}
-        asyncComponentsState={asyncComponentsContext.getState()}
-      />,
-    );
+    const html = renderToStaticMarkup(<ServerHTML
+      reactAppString={appString}
+      styleElement={styleElement}
+      nonce={nonce}
+      helmet={Helmet.rewind()}
+      storeState={store.getState()}
+      routerState={reactRouterContext}
+      jobsState={jobContext.getState()}
+      asyncComponentsState={asyncComponentsContext.getState()}
+    />);
 
     // Check if the router context contains a redirect, if so we need to set
     // the specific status and redirect header and end the response.
@@ -122,14 +120,12 @@ export default function reactApplicationMiddleware(request, response) {
     }
 
     response
-      .status(
-        reactRouterContext.missed
-          ? // If the renderResult contains a "missed" match then we set a 404 code.
-          // Our App component will handle the rendering of an Error404 view.
-          404
-          : // Otherwise everything is all good and we send a 200 OK status.
-          200,
-      )
+      .status(reactRouterContext.missed
+        ? // If the renderResult contains a "missed" match then we set a 404 code.
+        // Our App component will handle the rendering of an Error404 view.
+        404
+        : // Otherwise everything is all good and we send a 200 OK status.
+        200)
       .send(`<!DOCTYPE html>${html}`);
   });
 }
