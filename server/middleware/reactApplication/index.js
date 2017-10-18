@@ -1,22 +1,30 @@
 import React from 'react';
-import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import Helmet from 'react-helmet';
+import {
+  renderToString,
+  renderToStaticMarkup,
+  renderToNodeStream,
+} from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { ServerStyleSheet } from 'styled-components';
-import { AsyncComponentProvider, createAsyncContext } from 'react-async-component';
+import {
+  AsyncComponentProvider,
+  createAsyncContext,
+} from 'react-async-component';
 import { JobProvider, createJobContext } from 'react-jobs';
 import asyncBootstrapper from 'react-async-bootstrapper';
 import { Provider } from 'react-redux';
-import Helmet from 'react-helmet';
-import configureStore from '../../../src/redux/configureStore';
 import { addLocaleData, IntlProvider } from 'react-intl';
-
 import en from 'react-intl/locale-data/en';
+
+import configureStore from '../../../src/redux/configureStore';
+
 import messages from '../../../src/translations/en.json';
 
 import config from '../../../config';
-import DemoApp from '../../../src/components/DemoApp';
 import ServerHTML from './ServerHTML';
-import { log } from '../../../internal/utils';
+import DemoApp from '../../../src/components/DemoApp';
+import { log } from '../../../src/utils/logging';
 
 /**
  * React application middleware, supports server side rendering.
@@ -27,7 +35,8 @@ export default function reactApplicationMiddleware(request, response) {
   if (typeof response.locals.nonce !== 'string') {
     throw new Error('A "nonce" value has not been attached to the response');
   }
-  const nonce = response.locals.nonce;
+  const { locals: { nonce } } = response;
+
   const sheet = new ServerStyleSheet();
   // It's possible to disable SSR, which can be useful in development mode.
   // In this case traditional client side only rendering will occur.
@@ -35,14 +44,15 @@ export default function reactApplicationMiddleware(request, response) {
     if (process.env.BUILD_FLAG_IS_DEV === 'true') {
       // eslint-disable-next-line no-console
       log({
-        title: 'Server',
         level: 'info',
         message: `Handling react route without SSR: ${request.url}`,
       });
     }
     // SSR is disabled so we will return an "empty" html page and
     // rely on the client to initialize and render the react application.
-    const html = renderToStaticMarkup(sheet.collectStyles(<ServerHTML nonce={nonce} />));
+    const html = renderToStaticMarkup(
+      sheet.collectStyles(<ServerHTML nonce={nonce} />),
+    );
     response.status(200).send(`<!DOCTYPE html>${html}`);
     return;
   }
@@ -85,7 +95,11 @@ export default function reactApplicationMiddleware(request, response) {
       <JobProvider jobContext={jobContext}>
         <StaticRouter location={request.url} context={reactRouterContext}>
           <Provider store={store}>
-            <IntlProvider locale={locale} messages={messages} initialNow={Date.now()}>
+            <IntlProvider
+              locale={locale}
+              messages={messages}
+              initialNow={Date.now()}
+            >
               <DemoApp />
             </IntlProvider>
           </Provider>
@@ -100,32 +114,43 @@ export default function reactApplicationMiddleware(request, response) {
     const appString = renderToString(sheet.collectStyles(app));
     const styleElement = sheet.getStyleElement();
     // Generate the html response.
-    const html = renderToStaticMarkup(<ServerHTML
-      reactAppString={appString}
-      styleElement={styleElement}
-      nonce={nonce}
-      helmet={Helmet.rewind()}
-      storeState={store.getState()}
-      routerState={reactRouterContext}
-      jobsState={jobContext.getState()}
-      asyncComponentsState={asyncComponentsContext.getState()}
-    />);
+    const html = renderToNodeStream(
+      <ServerHTML
+        reactAppString={appString}
+        nonce={nonce}
+        helmet={Helmet.rewind()}
+        asyncComponentsState={asyncComponentsContext.getState()}
+        styleElement={styleElement}
+        storeState={store.getState()}
+        routerState={reactRouterContext}
+        jobsState={jobContext.getState()}
+      />,
+    );
 
-    // Check if the router context contains a redirect, if so we need to set
-    // the specific status and redirect header and end the response.
-    if (reactRouterContext.url) {
-      response.status(302).setHeader('Location', reactRouterContext.url);
-      response.end();
-      return;
-    }
-
-    response
-      .status(reactRouterContext.missed
-        ? // If the renderResult contains a "missed" match then we set a 404 code.
+    switch (reactRouterContext.status) {
+      case 301:
+      case 302:
+        // Check if the router context contains a redirect, if so we need to set
+        // the specific status and redirect header and end the response.
+        response.status(reactRouterContext.status);
+        response.location(reactRouterContext.url);
+        response.end();
+        break;
+      case 404:
+        // If the renderResult contains a "missed" match then we set a 404 code.
         // Our App component will handle the rendering of an Error404 view.
-        404
-        : // Otherwise everything is all good and we send a 200 OK status.
-        200)
-      .send(`<!DOCTYPE html>${html}`);
+        response.status(reactRouterContext.status);
+        response.type('html');
+        response.write('<!doctype html>');
+        html.pipe(response);
+        break;
+      default:
+        // Otherwise everything is all good and we send a 200 OK status.
+        response.status(200);
+        response.type('html');
+        response.setHeader('Cache-Control', 'no-cache');
+        response.write('<!doctype html>');
+        html.pipe(response);
+    }
   });
 }

@@ -4,6 +4,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import asyncBootstrapper from 'react-async-bootstrapper';
+import { AppContainer as ReactHotLoader } from 'react-hot-loader';
 import { AsyncComponentProvider } from 'react-async-component';
 import { JobProvider } from 'react-jobs';
 import { Provider } from 'react-redux';
@@ -31,7 +32,6 @@ import messages from '../src/translations/en.json';
 
 import './polyfills';
 
-import ReactHotLoader from './components/ReactHotLoader';
 import DemoApp from '../src/components/DemoApp';
 
 // Get the DOM Element that will host our React application.
@@ -49,8 +49,8 @@ const store = configureStore(
 const supportsHistory = 'pushState' in window.history;
 
 // Get any rehydrateState for the async components.
-// eslint-disable-next-line no-underscore-dangle
-const asyncComponentsRehydrateState = window.__ASYNC_COMPONENTS_REHYDRATE_STATE__;
+const asyncComponentsRehydrateState =
+  window.__ASYNC_COMPONENTS_REHYDRATE_STATE__;
 
 // Get any "rehydrate" state sent back by the server
 // eslint-disable-next-line no-underscore-dangle
@@ -97,7 +97,7 @@ require('./registerServiceWorker');
 
 // The following is needed so that we can support hot reloading our application.
 if (process.env.BUILD_FLAG_IS_DEV === 'true' && module.hot) {
-  module.hot.dispose((data) => {
+  module.hot.dispose(data => {
     // Deserialize store and keep in hot module data for next replacement
     data.store = stringify(toJS(store)); // eslint-disable-line
   });
