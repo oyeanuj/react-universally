@@ -15,6 +15,7 @@
     "deploy": "babel-node internal/scripts/deploy",
     "develop": "cross-env DEPLOYMENT=development babel-node internal/development",
     "lint": "eslint client server shared config internal",
+    "lint:css": "stylelint 'src/**/*.js'",
     "precommit": "lint-staged",
     "preinstall": "node internal/scripts/preinstall",
     "prepush": "jest",
@@ -25,7 +26,8 @@
   "lint-staged": {
     "*.js": [
       "prettier-eslint --write",
-      "git add"
+      "git add",
+      "yarn run lint:css"
     ]
   },
   "jest": {
@@ -126,9 +128,13 @@
     "react-test-renderer": "15.6.1",
     "regenerator-runtime": "0.10.5",
     "rimraf": "2.6.1",
-    "semver": "5.3.0",
+    "semver": "^5.3.0",
     "source-map-support": "0.4.15",
     "style-loader": "0.18.2",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.0.0",
     "webpack": "3.3.0",
     "webpack-bundle-analyzer": "2.8.3",
     "webpack-dev-middleware": "1.11.0",
