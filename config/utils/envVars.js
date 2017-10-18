@@ -14,7 +14,7 @@ import path from 'path';
 import ifElse from '../../shared/utils/logic/ifElse';
 import removeNil from '../../shared/utils/arrays/removeNil';
 
-import { log } from '../../internal/utils';
+import { log } from '../../shared/utils/logging';
 
 // PRIVATES
 
@@ -32,11 +32,15 @@ function registerEnvFile() {
     // Is there an environment config file at the app root for our target
     // environment name?
     // e.g. /projects/react-universally/.env.staging
-    ifElse(DEPLOYMENT)(path.resolve(appRootDir.get(), `${envFile}.${DEPLOYMENT}`)),
+    ifElse(DEPLOYMENT)(
+      path.resolve(appRootDir.get(), `${envFile}.${DEPLOYMENT}`),
+    ),
   ]);
 
   // Find the first env file path match.
-  const envFilePath = envFileResolutionOrder.find(filePath => fs.existsSync(filePath));
+  const envFilePath = envFileResolutionOrder.find(filePath =>
+    fs.existsSync(filePath),
+  );
 
   // If we found an env file match the register it.
   if (envFilePath) {
@@ -81,5 +85,7 @@ export function number(name, defaultVal) {
 }
 
 export function bool(name, defaultVal) {
-  return process.env[name] ? process.env[name] === 'true' || process.env[name] === '1' : defaultVal;
+  return process.env[name]
+    ? process.env[name] === 'true' || process.env[name] === '1'
+    : defaultVal;
 }
