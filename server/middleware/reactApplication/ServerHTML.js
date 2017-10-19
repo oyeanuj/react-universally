@@ -29,7 +29,12 @@ const clientEntryAssets = getClientBundleEntryAssets();
 
 function stylesheetTag(stylesheetFilePath) {
   return (
-    <link href={stylesheetFilePath} media="screen, projection" rel="stylesheet" type="text/css" />
+    <link
+      href={stylesheetFilePath}
+      media="screen, projection"
+      rel="stylesheet"
+      type="text/css"
+    />
   );
 }
 
@@ -44,15 +49,21 @@ function ServerHTML(props) {
 
   // Creates an inline script definition that is protected by the nonce.
   const inlineScript = body => (
-    <script nonce={nonce} type="text/javascript" dangerouslySetInnerHTML={{ __html: body }} />
+    <script
+      nonce={nonce}
+      type="text/javascript"
+      dangerouslySetInnerHTML={{ __html: body }}
+    />
   );
 
   const headerElements = removeNil([
+    ...ifElse(helmet)(() => helmet.meta.toComponent(), []),
     ...ifElse(helmet)(() => helmet.title.toComponent(), []),
     ...ifElse(helmet)(() => helmet.base.toComponent(), []),
-    ...ifElse(helmet)(() => helmet.meta.toComponent(), []),
     ...ifElse(helmet)(() => helmet.link.toComponent(), []),
-    ifElse(clientEntryAssets && clientEntryAssets.css)(() => stylesheetTag(clientEntryAssets.css)),
+    ifElse(clientEntryAssets && clientEntryAssets.css)(() =>
+      stylesheetTag(clientEntryAssets.css),
+    ),
     ...ifElse(helmet)(() => helmet.style.toComponent(), []),
   ]);
 
@@ -66,41 +77,59 @@ function ServerHTML(props) {
     // @see https://github.com/ctrlplusb/react-async-component
     ifElse(asyncComponentsState)(() =>
       inlineScript(
-        `window.__ASYNC_COMPONENTS_REHYDRATE_STATE__=${serialize(asyncComponentsState)};`,
+        `window.__ASYNC_COMPONENTS_REHYDRATE_STATE__=${serialize(
+          asyncComponentsState,
+        )};`,
       ),
     ),
     // Enable the polyfill io script?
     // This can't be configured within a react-helmet component as we
     // may need the polyfill's before our client JS gets parsed.
     ifElse(config('polyfillIO.enabled'))(() =>
-      scriptTag(`${config('polyfillIO.url')}?features=${config('polyfillIO.features').join(',')}`),
+      scriptTag(
+        `${config('polyfillIO.url')}?features=${config(
+          'polyfillIO.features',
+        ).join(',')}`,
+      ),
     ),
     // When we are in development mode our development server will
     // generate a vendor DLL in order to dramatically reduce our
     // compilation times.  Therefore we need to inject the path to the
     // vendor dll bundle below.
     ifElse(
-      process.env.BUILD_FLAG_IS_DEV === 'true' && config('bundles.client.devVendorDLL.enabled'),
+      process.env.BUILD_FLAG_IS_DEV === 'true' &&
+        config('bundles.client.devVendorDLL.enabled'),
     )(() =>
       scriptTag(
-        `${config('bundles.client.webPath')}${config('bundles.client.devVendorDLL.name')}.js?t=${Date.now()}`,
+        `${config('bundles.client.webPath')}${config(
+          'bundles.client.devVendorDLL.name',
+        )}.js?t=${Date.now()}`,
       ),
     ),
-    ifElse(clientEntryAssets && clientEntryAssets.js)(() => scriptTag(clientEntryAssets.js)),
+    ifElse(clientEntryAssets && clientEntryAssets.js)(() =>
+      scriptTag(clientEntryAssets.js),
+    ),
     ...ifElse(helmet)(() => helmet.script.toComponent(), []),
   ]);
 
   return (
     <HTML
-      htmlAttributes={ifElse(helmet)(() => helmet.htmlAttributes.toComponent(), null)}
+      htmlAttributes={ifElse(helmet)(
+        () => helmet.htmlAttributes.toComponent(),
+        null,
+      )}
       headerElements={headerElements.map((x, idx) => (
         <KeyedComponent key={idx}>{x}</KeyedComponent>
       ))}
-      bodyElements={bodyElements.map((x, idx) => <KeyedComponent key={idx}>{x}</KeyedComponent>)}
+      bodyElements={bodyElements.map((x, idx) => (
+        <KeyedComponent key={idx}>{x}</KeyedComponent>
+      ))}
       appBodyString={reactAppString}
     />
   );
 }
+
+export default ServerHTML;
 
 ServerHTML.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
@@ -111,6 +140,9 @@ ServerHTML.propTypes = {
   reactAppString: PropTypes.string,
 };
 
-// EXPORT
-
-export default ServerHTML;
+ServerHTML.defaultProps = {
+  asyncComponentsState: undefined,
+  helmet: undefined,
+  nonce: undefined,
+  reactAppString: undefined,
+};
