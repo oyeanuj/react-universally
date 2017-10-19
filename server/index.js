@@ -29,7 +29,7 @@ app.use(compression());
 // We do not want the service worker registered for development builds, and
 // additionally only want it registered if the config allows.
 if (
-  process.env.BUILD_FLAG_IS_DEV === 'false' &&
+  process.env.BUILD_FLAG_IS_DEV === false &&
   config('serviceWorker.enabled')
 ) {
   app.get(`/${config('serviceWorker.fileName')}`, serviceWorker);
