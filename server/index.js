@@ -85,7 +85,7 @@ const listener = app.listen(config('port'), () =>
       Polyfills: ${config('polyfillIO.enabled')} (${config(
       'polyfillIO.features',
     ).join(', ')})
-	    Locales: ${config('locales')}
+      Locales: ${config('locales')}
 
 
       Server is now listening on Port ${config('port')}

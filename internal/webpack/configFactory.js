@@ -421,7 +421,7 @@ export default function webpackConfigFactory(buildOptions) {
                   ifProd('transform-react-constant-elements'),
                   ifProd('transform-react-remove-prop-types'),
                   ifProdServer('transform-inline-environment-variables'),
-                  ifProd([
+                  ifProdClient([
                     'transform-remove-console',
                     { exclude: ['error', 'warn'] },
                   ]),
