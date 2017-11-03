@@ -1,6 +1,7 @@
 import appRootDir from 'app-root-dir';
 import AssetsPlugin from 'assets-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import nodeExternals from 'webpack-node-externals';
 import path from 'path';
 import webpack from 'webpack';
@@ -309,19 +310,26 @@ export default function webpackConfigFactory(buildOptions) {
       // configuration to ensure that the output is minimized/optimized.
       ifProdClient(
         () =>
-          new webpack.optimize.UglifyJsPlugin({
-            sourceMap: config('includeSourceMapsForOptimisedClientBundle'),
-            compress: {
-              screw_ie8: true,
+          new UglifyJSPlugin({
+            uglifyOptions: {
+              ie8: false,
+              ecma: 8,
               warnings: false,
+              parse: {
+                bare_returns: true,
+              },
+              compress: {
+                //  ecma: 5,  <-- Should be 6?
+                // screw_ie8: true,
+                warnings: false,
+              },
+              output: {
+                comments: false,
+                //  ecma: 5,  <-- Should be 6?
+              },
             },
-            mangle: {
-              screw_ie8: true,
-            },
-            output: {
-              comments: false,
-              screw_ie8: true,
-            },
+            parallel: 2,
+            sourceMap: config('includeSourceMapsForOptimisedClientBundle'),
           }),
       ),
 
