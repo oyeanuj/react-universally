@@ -38,9 +38,11 @@ function configureStore(initialState) {
     // This middleware will inform you if your action didn't lead
     // to a new state object being created. Runs only in development mode.
     const reduxUnhandledAction = require('redux-unhandled-action').default;
-    const handleUnhandled = (action) => {
+    const handleUnhandled = action => {
       console.log(action.type);
-      console.warn(`${action.type} didn't lead to creation of a new state object`);
+      console.warn(
+        `${action.type} didn't lead to creation of a new state object`,
+      );
     };
 
     middlewares.push(reduxUnhandledAction(handleUnhandled), logger);
@@ -57,17 +59,20 @@ function configureStore(initialState) {
     process.env.BUILD_FLAG_IS_DEV &&
     process.env.BUILD_FLAG_IS_CLIENT &&
     typeof window !== 'undefined' &&
-    typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+    typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined';
 
   const composeEnhancers = canDevTool
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ serialize: { options: true } })
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        serialize: { options: true },
+      })
     : compose;
 
   /* eslint-enable */
 
   const enhancers = composeEnhancers(
     // Middleware store enhancer.
-    applyMiddleware(...middlewares));
+    applyMiddleware(...middlewares),
+  );
 
   const store = initialState
     ? createStore(reducer, initialState, enhancers)
