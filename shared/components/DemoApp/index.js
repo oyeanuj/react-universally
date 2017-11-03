@@ -4,6 +4,7 @@ import React from 'react';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
 import Helmet from 'react-helmet';
+import DesignSystem from 'design-system-utils';
 
 import config from '../../../config';
 
@@ -29,9 +30,7 @@ function DemoApp() {
         <meta name="msapplication-TileColor" content="#2b2b2b" />
         <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png" />
         <meta name="theme-color" content="#2b2b2b" />
-        <title>
-          {config('htmlPage.defaultTitle')}
-        </title>
+        <title>{config('htmlPage.defaultTitle')}</title>
         {/*
           A great reference for favicons:
           https://github.com/audreyr/favicon-cheat-sheet
